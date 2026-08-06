@@ -3,80 +3,100 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BALKAN2EGYPT — Travel & Real Estate</title>
-  <meta name="description" content="We promote hotels, apartments, tours, restaurants and real estate opportunities in Egypt." />
+  <title>BALKAN2EGYPT — Your Local Travel Partner in Hurghada</title>
+  <meta name="description" content="Apartments, excursions, water sports and airport transfers with local support in Hurghada, Egypt." />
   <link rel="stylesheet" href="assets/styles.css" />
   <script src="assets/data.js"></script>
   <script defer src="assets/app.js"></script>
 </head>
-<body>
+<body class="home-page">
 
-<header class="topbar">
-  <div class="container nav">
-    <div class="brand">
-      <img class="brand__logo" src="assets/logo-balkan2egypt.jpg" alt="Balkan 2 Egypt logo">
-      <div>BALKAN2EGYPT</div>
-    </div>
-    <nav class="menu">
-      <a href="index.html">Home</a>
-      <a href="rentals.html">Hotels & Apartments</a>
-      <a href="properties.html">Real Estate</a>
-      <a href="tours.html">Tours</a>
-      <a href="transfers.html">Transfers</a>
-      <a href="flights.html">Flights</a>
-      <a href="food.html">Food</a>
-      <a href="blog.html">Blog</a>
-      <a href="partners.html">Partners</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
+<header class="topbar home-topbar">
+  <div class="container nav home-nav">
+    <a class="home-brand" href="index.html" aria-label="Balkan 2 Egypt home">
+      <img src="assets/logo-balkan2egypt.jpg" alt="Balkan 2 Egypt logo" />
+    </a>
+    <nav class="menu home-menu" aria-label="Main navigation">
+      <a class="active" href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#services">What We Offer</a>
     </nav>
+    <a class="nav-book" data-wa="Hi! I would like to book a service with BALKAN2EGYPT." href="#">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M7 2v3M17 2v3M3.5 9h17M5.5 4h13a2 2 0 0 1 2 2v14h-17V6a2 2 0 0 1 2-2Z" />
+        <path d="M7.5 12.5h2v2h-2zM11 12.5h2v2h-2zM14.5 12.5h2v2h-2zM7.5 16h2v2h-2zM11 16h2v2h-2z" />
+      </svg>
+      <span>Book Now</span>
+    </a>
   </div>
 </header>
 
-<section class="hero">
-  <div class="hero__bg"></div>
-  <div class="container hero__content">
-    <h1>Discover & Invest in Egypt</h1>
+<main>
+  <section class="home-hero" aria-labelledby="home-title">
+    <div class="home-hero__photo" aria-hidden="true"></div>
+    <div class="home-hero__sun" aria-hidden="true"></div>
+    <div class="home-hero__lagoon" aria-hidden="true"></div>
 
-    <div class="quick">
-      <a href="rentals.html"><span class="badge">🏨</span> Hotels & Apartments</a>
-      <a href="tours.html"><span class="badge">🧭</span> Tours & Excursions</a>
-      <a href="properties.html"><span class="badge">💰</span> Properties for Sale</a>
-      <a href="transfers.html"><span class="badge">🚗</span> Airport Transfers</a>
-    </div>
-  </div>
-</section>
+    <div class="home-hero__content">
+      <a class="booking-orbit" data-wa="Hi! I would like to book my Hurghada trip." href="#">
+        <span>Book<br />Now</span>
+      </a>
 
-<main class="page">
-  <div class="container grid2">
-    <section class="section">
-      <h2>Featured Rentals</h2>
-      <div id="rentalsGrid" class="gridCards"></div>
-    </section>
-
-    <section class="section">
-      <h2>Popular Tours</h2>
-      <div id="toursGrid" class="gridCards" style="grid-template-columns:1fr 1fr"></div>
-      <div style="margin-top:12px; text-align:center">
-        <a class="btn gold" href="tours.html">View All Tours</a>
+      <div class="hero-logo-wrap">
+        <img src="assets/logo-balkan2egypt.jpg" alt="Balkan 2 Egypt" />
       </div>
-    </section>
-  </div>
 
-  <div class="container" style="margin-top:22px">
-    <img src="assets/featured-photo.jpg" alt="Balkan 2 Egypt" style="width:100%; border-radius:var(--radius); box-shadow:var(--shadow); display:block">
-  </div>
+      <div class="hero-copy">
+        <p class="hero-kicker">Discover Hurghada with people who live here</p>
+        <h1 id="home-title">Your Local Travel Partner in Hurghada</h1>
+        <span class="hero-divider" aria-hidden="true"></span>
+        <p>Discover the beauty of Egypt with our premium local services.</p>
+      </div>
 
-  <div class="container footerCta" style="margin-top:22px">
-    <div class="bg"></div>
-    <div class="content">
-      <h2>Partner with Us</h2>
-      <p>Hotels, apartment owners, developers, restaurants — let’s grow together.</p>
-      <a class="btn gold" href="partners.html">Contact Us Today</a>
+      <nav id="services" class="service-strip" aria-label="Travel services">
+        <a href="rentals.html">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M7 22 24 8l17 14v19H29V29H19v12H7V22Z"/><path d="M13 19V10h7v3"/></svg>
+          <span><strong>Premium</strong> Apartments</span>
+        </a>
+        <a href="tours.html">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M5 31h38l-6 9H14l-9-9Z"/><path d="M13 31V18h15l7 13M21 18V8h8M17 8h16"/><path d="M7 43c4-3 8 3 12 0s8 3 12 0 8 3 12 0"/></svg>
+          <span><strong>Excursions</strong> &amp; Tours</span>
+        </a>
+        <a href="tours.html">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M5 19c5-5 9-5 14 0s9 5 14 0 8-5 11-2M5 28c5-5 9-5 14 0s9 5 14 0 8-5 11-2M5 37c5-5 9-5 14 0s9 5 14 0 8-5 11-2"/><path d="M24 9c5 0 8 4 8 9"/></svg>
+          <span><strong>Water</strong> Sports</span>
+        </a>
+        <a href="transfers.html">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 21h32l4 8v10H4V29l4-8Z"/><path d="m12 21 4-9h16l4 9M12 29h5M31 29h5"/><circle cx="13" cy="39" r="4"/><circle cx="35" cy="39" r="4"/></svg>
+          <span><strong>Airport</strong> Transfers</span>
+        </a>
+        <a data-wa="Hi! I need local support in Hurghada." href="#">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 27v-5a14 14 0 0 1 28 0v5"/><path d="M10 25H6v11h8V25h-4ZM38 25h4v11h-8V25h4ZM34 40h-7"/><circle cx="24" cy="40" r="3"/></svg>
+          <span><strong>24/7 Local</strong> Support</span>
+        </a>
+      </nav>
     </div>
-  </div>
+  </section>
+
+  <section id="gallery" class="home-gallery">
+    <div class="container gallery-heading">
+      <div>
+        <p class="eyebrow">The Red Sea, your way</p>
+        <h2>Stay, explore and arrive with ease.</h2>
+      </div>
+      <p>From your airport pickup to your sea-view apartment and first day on the water, one local team keeps every detail simple.</p>
+    </div>
+    <div class="container gallery-grid">
+      <a class="gallery-card gallery-card--stay" href="rentals.html"><span>Stay by the sea</span></a>
+      <a class="gallery-card gallery-card--explore" href="tours.html"><span>Explore the coast</span></a>
+      <a class="gallery-card gallery-card--arrive" href="transfers.html"><span>Arrive comfortably</span></a>
+    </div>
+  </section>
 </main>
 
-<a id="wa-float" class="wa-float" href="#" aria-label="WhatsApp">💬</a>
+<a id="wa-float" class="wa-float" href="#" aria-label="Chat with us on WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.8a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.3-4.7a8.5 8.5 0 1 1 16.2-4Z"/><path d="M8.2 7.5c.2-.5.4-.5.8-.5h.5c.2 0 .4.1.5.4l.8 2c.1.3 0 .5-.2.7l-.6.7c-.2.2-.1.4 0 .6.8 1.5 2 2.6 3.6 3.3.3.1.5.1.7-.1l.9-1.1c.2-.2.4-.3.7-.2l2 .9c.3.1.4.3.4.5 0 .5-.2 1.5-1 2.1-.7.6-1.7.9-2.7.7-1.1-.2-2.5-.7-4.3-2.2-2.3-2-3.8-4.4-3.9-5.9 0-.8.2-1.4.5-1.9Z"/></svg>
+</a>
 </body>
 </html>
