@@ -1,6 +1,6 @@
 // Demo data (static). Later this can be replaced by a CMS.
 window.DATA = {
-  whatsappNumber: "201234567890", // <-- change to your WhatsApp (country code + number, no +)
+  whatsappNumber: "38975225065", // WhatsApp (country code + number, no +)
   socialLinks: {
     instagram: "https://www.instagram.com/balkan2egyptagency/",
     facebook: "https://www.facebook.com/Balkan2Egypt"
