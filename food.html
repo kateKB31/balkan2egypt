@@ -1,0 +1,38 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Food & Dining — BALKAN2EGYPT</title>
+<link rel="stylesheet" href="assets/styles.css"/>
+<script src="assets/data.js"></script><script defer src="assets/app.js"></script>
+</head><body>
+<header class="topbar"><div class="container nav">
+  <div class="brand"><img class="brand__logo" src="assets/logo-balkan2egypt.jpg" alt="Balkan 2 Egypt logo"><div>BALKAN2EGYPT</div></div>
+  <nav class="menu"><a href="index.html">Home</a><a href="food.html">Food</a><a href="contact.html">Contact</a></nav>
+</div></header>
+
+<main class="page"><div class="container section">
+  <h2>Food & Dining</h2>
+  <p class="muted">Restaurants • Cafés • Local food • Seafood</p>
+  <div class="gridCards" id="foodGrid"></div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const items = window.DATA.food || [];
+      const el = document.querySelector("#foodGrid");
+      el.innerHTML = items.map(f => `
+        <div class="card">
+          <div class="card__img" style="background-image:url('${f.image}')"></div>
+          <div class="card__body">
+            <h3>${f.name}</h3>
+            <p class="muted">${f.category} • ${f.location} • ${f.hours}</p>
+            <p>${f.description}</p>
+            <a class="btn small gold" data-wa="Hi! I want info about: ${f.name} (${f.location})." href="#">Ask on WhatsApp</a>
+          </div>
+        </div>
+      `).join("");
+      setWAButtons();
+    });
+  </script>
+</div></main>
+
+<a id="wa-float" class="wa-float" href="#" aria-label="WhatsApp">💬</a>
+</body></html>

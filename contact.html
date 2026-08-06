@@ -1,0 +1,69 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Contact — BALKAN2EGYPT</title>
+<link rel="stylesheet" href="assets/styles.css"/>
+<script src="assets/data.js"></script><script defer src="assets/app.js"></script>
+</head><body>
+<header class="topbar"><div class="container nav">
+  <div class="brand"><img class="brand__logo" src="assets/logo-balkan2egypt.jpg" alt="Balkan 2 Egypt logo"><div>BALKAN2EGYPT</div></div>
+  <nav class="menu"><a href="index.html">Home</a><a href="contact.html">Contact</a></nav>
+</div></header>
+
+<main class="page"><div class="container section">
+  <h2>Contact</h2>
+  <p class="muted">WhatsApp • Email • Social links</p>
+
+  <div class="gridCards" style="grid-template-columns:repeat(2,1fr)">
+    <div class="panel">
+      <h3 style="margin:0 0 8px">Message on WhatsApp</h3>
+      <a class="btn gold" data-wa="Hi! I’d like to contact BALKAN2EGYPT." href="#">Open WhatsApp</a>
+      <p class="muted" style="margin-top:10px">Change the number in <code>assets/data.js</code>.</p>
+    </div>
+
+    <div class="panel">
+      <h3 style="margin:0 0 8px">Send us a message</h3>
+      <form id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/">
+        <input type="hidden" name="form-name" value="contact" />
+        <input type="hidden" name="subject" value="New contact enquiry from %{formName} on %{siteName}" />
+        <p style="display:none">
+          <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+        </p>
+        <div style="display:grid; gap:10px">
+          <input name="name" placeholder="Your name" required style="padding:10px 12px;border-radius:12px;border:1px solid rgba(0,0,0,.12)"/>
+          <input name="email" type="email" placeholder="Email" required style="padding:10px 12px;border-radius:12px;border:1px solid rgba(0,0,0,.12)"/>
+          <textarea name="message" placeholder="Message" required rows="5"
+            style="padding:10px 12px;border-radius:12px;border:1px solid rgba(0,0,0,.12)"></textarea>
+          <button class="btn primary" type="submit">Send</button>
+        </div>
+        <p id="contact-status" class="muted" role="status" aria-live="polite" style="margin-top:10px"></p>
+      </form>
+    </div>
+  </div>
+</div></main>
+
+<a id="wa-float" class="wa-float" href="#" aria-label="WhatsApp">💬</a>
+<script>
+  (function () {
+    var form = document.getElementById('contact-form');
+    var status = document.getElementById('contact-status');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      status.textContent = 'Sending…';
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form)).toString(),
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error('Request failed');
+          form.reset();
+          status.textContent = 'Thanks! Your message has been sent — we’ll reply by email shortly.';
+        })
+        .catch(function () {
+          status.textContent = 'Sorry, something went wrong. Please email us directly at kateka75@gmail.com.';
+        });
+    });
+  })();
+</script>
+</body></html>
