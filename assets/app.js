@@ -90,17 +90,33 @@ function initRentalsList() {
 function initRentalSingle() {
   const id = getParam("id");
   const r = window.DATA.rentals.find(x => x.id === id);
-  if (!r) return;
 
+  if (!r) {
+    qs("#subtitle").textContent = "Stay unavailable";
+    qs("#title").textContent = "Apartment Not Found";
+    qs("#tagline").textContent = "Check the link, or browse every stay we currently offer.";
+    qs(".detail-layout").innerHTML = `
+      <article class="detail-card detail-card--full">
+        <p class="detail-card__eyebrow">Nothing to show</p>
+        <h2>This Stay Is No Longer Listed</h2>
+        <p class="detail-copy">Browse our current apartments and hotels, or message us for a personal recommendation.</p>
+      </article>
+    `;
+    return;
+  }
+
+  document.title = `${r.name} — Balkan2Egypt`;
   qs("#title").textContent = r.name;
   qs("#subtitle").textContent = `${r.location} • ${r.type}`;
   qs("#heroImg").style.backgroundImage = `url('${r.image}')`;
   qs("#desc").textContent = r.description;
-  qs("#price").textContent = `From ${moneyEUR(r.pricePerNight)} / night`;
+  qs("#price").innerHTML = `<strong>${moneyEUR(r.pricePerNight)}</strong><span>per night</span>`;
   qs("#amenities").innerHTML = r.amenities.map(a => `<li>${a}</li>`).join("");
   qs("#map").src = r.mapEmbed;
 
   qs("#bookWA").setAttribute("data-wa", `Hi! I want to book: ${r.name} in ${r.location}.`);
+  // data-wa lands after the initial pass, so refresh the WhatsApp links.
+  setWAButtons();
 }
 
 function initPropertiesList() {
@@ -205,12 +221,13 @@ function initTourSingle() {
 
 function initBlogList() {
   renderCards("#blogGrid", window.DATA.posts, (b) => `
-    <a class="card" href="post.html?id=${b.id}">
-      <div class="card__img" style="background-image:url('${b.image}')"></div>
-      <div class="card__body">
+    <a class="guide-card" href="post.html?id=${b.id}">
+      <div class="guide-card__image" style="background-image:url('${b.image}')"></div>
+      <div class="guide-card__body">
+        <p class="guide-card__category">${b.category}</p>
         <h3>${b.title}</h3>
-        <p class="muted">${b.category}</p>
-        <p>${b.excerpt}</p>
+        <p class="guide-card__excerpt">${b.excerpt}</p>
+        <span class="guide-card__link">Read the story <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
       </div>
     </a>
   `);
@@ -219,8 +236,15 @@ function initBlogList() {
 function initPostSingle() {
   const id = getParam("id");
   const b = window.DATA.posts.find(x => x.id === id);
-  if (!b) return;
+  if (!b) {
+    qs("#subtitle").textContent = "Story unavailable";
+    qs("#title").textContent = "Travel Story Not Found";
+    qs("#tagline").textContent = "The link may be outdated. Browse the latest advice in our Travel Guide.";
+    qs("#content").innerHTML = `<h2>This story is no longer available.</h2><p>Return to the Travel Guide for current local tips and inspiration.</p>`;
+    return;
+  }
 
+  document.title = `${b.title} — Balkan2Egypt`;
   qs("#title").textContent = b.title;
   qs("#subtitle").textContent = b.category;
   qs("#heroImg").style.backgroundImage = `url('${b.image}')`;
