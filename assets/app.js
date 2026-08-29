@@ -240,31 +240,6 @@ function formatFacebookDate(value) {
   }).format(date);
 }
 
-function createDiscoverState(title, message, pageUrl) {
-  const state = document.createElement("div");
-  state.className = "discover-state";
-
-  const mark = document.createElement("span");
-  mark.className = "discover-state__mark";
-  mark.setAttribute("aria-hidden", "true");
-  mark.textContent = "B2E";
-
-  const heading = document.createElement("h3");
-  heading.textContent = title;
-
-  const copy = document.createElement("p");
-  copy.textContent = message;
-
-  const link = document.createElement("a");
-  link.href = pageUrl;
-  link.target = "_blank";
-  link.rel = "noopener noreferrer";
-  link.textContent = "Visit our Facebook page";
-
-  state.append(mark, heading, copy, link);
-  return state;
-}
-
 function createFacebookTimeline(pageUrl) {
   const wrapper = document.createElement("div");
   wrapper.className = "facebook-timeline";
@@ -279,9 +254,16 @@ function createFacebookTimeline(pageUrl) {
   heading.textContent = "The latest Balkan2Egypt posts";
 
   const copy = document.createElement("p");
-  copy.textContent = "This timeline updates automatically whenever a new post is published on our Facebook page.";
+  copy.textContent = "Our newest travel moments, offers and local tips appear here automatically, straight from the Balkan2Egypt Facebook page.";
 
-  intro.append(eyebrow, heading, copy);
+  const cta = document.createElement("a");
+  cta.className = "facebook-timeline__cta";
+  cta.href = pageUrl;
+  cta.target = "_blank";
+  cta.rel = "noopener noreferrer";
+  cta.textContent = "Follow on Facebook";
+
+  intro.append(eyebrow, heading, copy, cta);
 
   const frameShell = document.createElement("div");
   frameShell.className = "facebook-timeline__frame";
@@ -290,7 +272,7 @@ function createFacebookTimeline(pageUrl) {
   pluginUrl.searchParams.set("href", pageUrl);
   pluginUrl.searchParams.set("tabs", "timeline");
   pluginUrl.searchParams.set("width", "500");
-  pluginUrl.searchParams.set("height", "760");
+  pluginUrl.searchParams.set("height", "900");
   pluginUrl.searchParams.set("small_header", "false");
   pluginUrl.searchParams.set("adapt_container_width", "true");
   pluginUrl.searchParams.set("hide_cover", "false");
@@ -300,7 +282,7 @@ function createFacebookTimeline(pageUrl) {
   iframe.title = "Latest posts from Balkan2Egypt on Facebook";
   iframe.src = pluginUrl.toString();
   iframe.width = "500";
-  iframe.height = "760";
+  iframe.height = "900";
   iframe.loading = "lazy";
   iframe.allow = "autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share";
   iframe.setAttribute("allowfullscreen", "true");
@@ -331,6 +313,12 @@ function createFacebookPostCard(post, index) {
     image.alt = "";
     image.loading = index < 2 ? "eager" : "lazy";
     image.decoding = "async";
+    image.referrerPolicy = "no-referrer";
+    // Facebook CDN links expire; drop the broken image rather than showing a torn card.
+    image.addEventListener("error", () => {
+      image.remove();
+      card.classList.add("discover-card--text");
+    }, { once: true });
     card.appendChild(image);
   }
 
@@ -345,6 +333,13 @@ function createFacebookPostCard(post, index) {
   meta.className = "discover-card__meta";
   meta.textContent = formatFacebookDate(post.createdTime);
 
+  if (post.mediaType === "video") {
+    const badge = document.createElement("b");
+    badge.className = "discover-card__badge";
+    badge.textContent = "Video";
+    meta.appendChild(badge);
+  }
+
   const message = document.createElement("span");
   message.className = "discover-card__message";
   message.textContent = post.message;
@@ -358,11 +353,33 @@ function createFacebookPostCard(post, index) {
   return card;
 }
 
+function createDiscoverFooter(pageUrl) {
+  const footer = document.createElement("div");
+  footer.className = "discover-footer";
+
+  const copy = document.createElement("p");
+  copy.textContent = "These posts refresh automatically as we publish on Facebook.";
+
+  const link = document.createElement("a");
+  link.href = pageUrl;
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+  link.textContent = "See all posts on Facebook ↗";
+
+  footer.append(copy, link);
+  return footer;
+}
+
 async function initFacebookPosts() {
   const feed = qs("#facebookPosts");
   if (!feed) return;
 
   const defaultPageUrl = window.DATA.socialLinks.facebook;
+
+  const showTimeline = (pageUrl) => {
+    feed.replaceChildren(createFacebookTimeline(pageUrl));
+    feed.setAttribute("aria-busy", "false");
+  };
 
   try {
     const response = await fetch("/api/facebook-posts", {
@@ -370,35 +387,24 @@ async function initFacebookPosts() {
     });
     const payload = await response.json();
     const pageUrl = payload.pageUrl || defaultPageUrl;
+    const posts = Array.isArray(payload.posts) ? payload.posts : [];
+
+    // Without post data of our own, the official page embed is the only way to
+    // still show real posts, so it stands in for every non-success case.
+    if (!response.ok || payload.error || !payload.configured || !posts.length) {
+      showTimeline(pageUrl);
+      return;
+    }
 
     feed.replaceChildren();
     feed.setAttribute("aria-busy", "false");
 
-    if (!response.ok || payload.error) {
-      feed.appendChild(createFacebookTimeline(pageUrl));
-      return;
-    }
-
-    if (!payload.configured) {
-      feed.appendChild(createFacebookTimeline(pageUrl));
-      return;
-    }
-
-    if (!payload.posts.length) {
-      feed.appendChild(createDiscoverState(
-        "New Egypt stories are coming soon",
-        "Follow Balkan2Egypt on Facebook for the latest travel moments and local inspiration.",
-        pageUrl
-      ));
-      return;
-    }
-
-    payload.posts.forEach((post, index) => {
+    posts.forEach((post, index) => {
       feed.appendChild(createFacebookPostCard(post, index));
     });
+    feed.appendChild(createDiscoverFooter(pageUrl));
   } catch {
-    feed.replaceChildren(createFacebookTimeline(defaultPageUrl));
-    feed.setAttribute("aria-busy", "false");
+    showTimeline(defaultPageUrl);
   }
 }
 
