@@ -90,17 +90,33 @@ function initRentalsList() {
 function initRentalSingle() {
   const id = getParam("id");
   const r = window.DATA.rentals.find(x => x.id === id);
-  if (!r) return;
 
+  if (!r) {
+    qs("#subtitle").textContent = "Stay unavailable";
+    qs("#title").textContent = "Apartment Not Found";
+    qs("#tagline").textContent = "Check the link, or browse every stay we currently offer.";
+    qs(".detail-layout").innerHTML = `
+      <article class="detail-card detail-card--full">
+        <p class="detail-card__eyebrow">Nothing to show</p>
+        <h2>This Stay Is No Longer Listed</h2>
+        <p class="detail-copy">Browse our current apartments and hotels, or message us for a personal recommendation.</p>
+      </article>
+    `;
+    return;
+  }
+
+  document.title = `${r.name} — Balkan2Egypt`;
   qs("#title").textContent = r.name;
   qs("#subtitle").textContent = `${r.location} • ${r.type}`;
   qs("#heroImg").style.backgroundImage = `url('${r.image}')`;
   qs("#desc").textContent = r.description;
-  qs("#price").textContent = `From ${moneyEUR(r.pricePerNight)} / night`;
+  qs("#price").innerHTML = `<strong>${moneyEUR(r.pricePerNight)}</strong><span>per night</span>`;
   qs("#amenities").innerHTML = r.amenities.map(a => `<li>${a}</li>`).join("");
   qs("#map").src = r.mapEmbed;
 
   qs("#bookWA").setAttribute("data-wa", `Hi! I want to book: ${r.name} in ${r.location}.`);
+  // data-wa lands after the initial pass, so refresh the WhatsApp links.
+  setWAButtons();
 }
 
 function initPropertiesList() {
