@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tours & Excursions — Balkan2Egypt</title>
-  <meta name="description" content="Discover curated tours and excursions across Egypt with trusted local guides." />
+  <title>Discover Egypt — Balkan2Egypt</title>
+  <meta name="description" content="Fresh Egypt travel inspiration, stories, and updates from the Balkan2Egypt Facebook page." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -12,7 +12,7 @@
   <script src="assets/data.js"></script>
   <script defer src="assets/app.js"></script>
 </head>
-<body class="listing-page tours-page">
+<body class="listing-page discover-page">
   <header class="topbar listing-topbar">
     <div class="container nav listing-nav">
       <a class="home-brand" href="index.html" aria-label="Balkan2Egypt home">
@@ -24,33 +24,41 @@
       <nav class="menu home-menu listing-menu" aria-label="Main navigation">
         <a href="index.html">Home</a>
         <a href="rentals.html">Apartments</a>
-        <a class="active" href="tours.html">Excursions</a>
-        <a href="discover.html">Discover Egypt</a>
+        <a href="tours.html">Excursions</a>
+        <a class="active" href="discover.html">Discover Egypt</a>
         <a href="contact.html">Contact</a>
       </nav>
-      <a class="nav-book" data-wa="Hi! I would like help choosing an excursion in Egypt." href="#">Book now</a>
+      <a class="nav-book" data-wa="Hi! I saw something on Discover Egypt and would like to know more." href="#">Book now</a>
     </div>
   </header>
 
   <main class="listing-main">
-    <section class="listing-hero" aria-labelledby="tours-title">
+    <section class="listing-hero discover-hero" aria-labelledby="discover-title">
       <div class="container listing-hero__content">
-        <p class="listing-kicker">Explore beyond the shore</p>
-        <h1 id="tours-title">Tours &amp;<br />Excursions</h1>
-        <p>Sea, desert, and ancient wonders—curated with trusted local guides.</p>
+        <p class="listing-kicker">Stories from the Red Sea and beyond</p>
+        <h1 id="discover-title">Discover<br />Egypt</h1>
+        <p>Fresh travel moments, local tips, and inspiration shared directly by Balkan2Egypt.</p>
       </div>
     </section>
 
-    <section class="listing-section" aria-label="Available tours">
+    <section class="listing-section discover-section" aria-labelledby="discover-feed-title">
       <div class="container">
-        <div class="listing-heading">
+        <div class="listing-heading discover-heading">
           <div>
-            <p>Made for your journey</p>
-            <h2>Featured Experiences</h2>
+            <p>Latest from our community</p>
+            <h2 id="discover-feed-title">Egypt Stories</h2>
           </div>
-          <span>Browse excursions and book directly through WhatsApp.</span>
+          <a class="discover-facebook-link" href="https://www.facebook.com/Balkan2Egypt" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.4 8.2V6.8c0-.7.5-.9 1-.9h2.4V2.2L14.5 2C11.2 2 9.8 4 9.8 6.5v1.7H7v4.1h2.8V22h4.6v-9.7h3.1l.5-4.1h-3.6Z" /></svg>
+            <span>Follow on Facebook</span>
+          </a>
         </div>
-        <div id="toursGrid" class="gridCards listing-grid"></div>
+
+        <div id="facebookPosts" class="discover-grid" aria-live="polite" aria-busy="true">
+          <div class="discover-skeleton discover-skeleton--wide"><span></span><i></i><i></i><i></i></div>
+          <div class="discover-skeleton"><span></span><i></i><i></i><i></i></div>
+          <div class="discover-skeleton"><span></span><i></i><i></i><i></i></div>
+        </div>
       </div>
     </section>
   </main>

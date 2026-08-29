@@ -227,6 +227,181 @@ function initPostSingle() {
   qs("#content").innerHTML = b.content;
 }
 
+function formatFacebookDate(value) {
+  if (!value) return "Latest update";
+
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "Latest update";
+
+  return new Intl.DateTimeFormat("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric"
+  }).format(date);
+}
+
+function createDiscoverState(title, message, pageUrl) {
+  const state = document.createElement("div");
+  state.className = "discover-state";
+
+  const mark = document.createElement("span");
+  mark.className = "discover-state__mark";
+  mark.setAttribute("aria-hidden", "true");
+  mark.textContent = "B2E";
+
+  const heading = document.createElement("h3");
+  heading.textContent = title;
+
+  const copy = document.createElement("p");
+  copy.textContent = message;
+
+  const link = document.createElement("a");
+  link.href = pageUrl;
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+  link.textContent = "Visit our Facebook page";
+
+  state.append(mark, heading, copy, link);
+  return state;
+}
+
+function createFacebookTimeline(pageUrl) {
+  const wrapper = document.createElement("div");
+  wrapper.className = "facebook-timeline";
+
+  const intro = document.createElement("div");
+  intro.className = "facebook-timeline__intro";
+
+  const eyebrow = document.createElement("span");
+  eyebrow.textContent = "Live from Facebook";
+
+  const heading = document.createElement("h3");
+  heading.textContent = "The latest Balkan2Egypt posts";
+
+  const copy = document.createElement("p");
+  copy.textContent = "This timeline updates automatically whenever a new post is published on our Facebook page.";
+
+  intro.append(eyebrow, heading, copy);
+
+  const frameShell = document.createElement("div");
+  frameShell.className = "facebook-timeline__frame";
+
+  const pluginUrl = new URL("https://www.facebook.com/plugins/page.php");
+  pluginUrl.searchParams.set("href", pageUrl);
+  pluginUrl.searchParams.set("tabs", "timeline");
+  pluginUrl.searchParams.set("width", "500");
+  pluginUrl.searchParams.set("height", "760");
+  pluginUrl.searchParams.set("small_header", "false");
+  pluginUrl.searchParams.set("adapt_container_width", "true");
+  pluginUrl.searchParams.set("hide_cover", "false");
+  pluginUrl.searchParams.set("show_facepile", "false");
+
+  const iframe = document.createElement("iframe");
+  iframe.title = "Latest posts from Balkan2Egypt on Facebook";
+  iframe.src = pluginUrl.toString();
+  iframe.width = "500";
+  iframe.height = "760";
+  iframe.loading = "lazy";
+  iframe.allow = "autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share";
+  iframe.setAttribute("allowfullscreen", "true");
+
+  const directLink = document.createElement("a");
+  directLink.className = "facebook-timeline__link";
+  directLink.href = pageUrl;
+  directLink.target = "_blank";
+  directLink.rel = "noopener noreferrer";
+  directLink.textContent = "Open Balkan2Egypt on Facebook ↗";
+
+  frameShell.append(iframe, directLink);
+  wrapper.append(intro, frameShell);
+  return wrapper;
+}
+
+function createFacebookPostCard(post, index) {
+  const card = document.createElement("a");
+  card.className = `discover-card${index === 0 ? " discover-card--featured" : ""}${post.imageUrl ? "" : " discover-card--text"}`;
+  card.href = post.permalinkUrl;
+  card.target = "_blank";
+  card.rel = "noopener noreferrer";
+
+  if (post.imageUrl) {
+    const image = document.createElement("img");
+    image.className = "discover-card__image";
+    image.src = post.imageUrl;
+    image.alt = "";
+    image.loading = index < 2 ? "eager" : "lazy";
+    image.decoding = "async";
+    card.appendChild(image);
+  }
+
+  const shade = document.createElement("span");
+  shade.className = "discover-card__shade";
+  shade.setAttribute("aria-hidden", "true");
+
+  const content = document.createElement("span");
+  content.className = "discover-card__content";
+
+  const meta = document.createElement("span");
+  meta.className = "discover-card__meta";
+  meta.textContent = formatFacebookDate(post.createdTime);
+
+  const message = document.createElement("span");
+  message.className = "discover-card__message";
+  message.textContent = post.message;
+
+  const action = document.createElement("span");
+  action.className = "discover-card__action";
+  action.innerHTML = "Read on Facebook <b aria-hidden=\"true\">↗</b>";
+
+  content.append(meta, message, action);
+  card.append(shade, content);
+  return card;
+}
+
+async function initFacebookPosts() {
+  const feed = qs("#facebookPosts");
+  if (!feed) return;
+
+  const defaultPageUrl = window.DATA.socialLinks.facebook;
+
+  try {
+    const response = await fetch("/api/facebook-posts", {
+      headers: { accept: "application/json" }
+    });
+    const payload = await response.json();
+    const pageUrl = payload.pageUrl || defaultPageUrl;
+
+    feed.replaceChildren();
+    feed.setAttribute("aria-busy", "false");
+
+    if (!response.ok || payload.error) {
+      feed.appendChild(createFacebookTimeline(pageUrl));
+      return;
+    }
+
+    if (!payload.configured) {
+      feed.appendChild(createFacebookTimeline(pageUrl));
+      return;
+    }
+
+    if (!payload.posts.length) {
+      feed.appendChild(createDiscoverState(
+        "New Egypt stories are coming soon",
+        "Follow Balkan2Egypt on Facebook for the latest travel moments and local inspiration.",
+        pageUrl
+      ));
+      return;
+    }
+
+    payload.posts.forEach((post, index) => {
+      feed.appendChild(createFacebookPostCard(post, index));
+    });
+  } catch {
+    feed.replaceChildren(createFacebookTimeline(defaultPageUrl));
+    feed.setAttribute("aria-busy", "false");
+  }
+}
+
 function setMobileNav() {
   const nav = qs(".topbar .nav");
   const menu = qs(".topbar .menu");
@@ -263,6 +438,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (qs("#propertiesGrid")) initPropertiesList();
   if (qs("#toursGrid")) initToursList();
   if (qs("#blogGrid")) initBlogList();
+  if (qs("#facebookPosts")) initFacebookPosts();
 
   if (qs("body").classList.contains("rental-single")) initRentalSingle();
   if (qs("body").classList.contains("property-single")) initPropertySingle();
