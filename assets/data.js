@@ -15,7 +15,16 @@ window.DATA = {
       pricePerNight: 55,
       image: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=70",
       description: "Bright apartment near the beach. Great for couples and digital nomads.",
-      amenities: ["Wi-Fi", "Air conditioning", "Kitchen", "Near beach"],
+      amenities: [
+        "🌴 Luxury & privacy in El Gouna!",
+        "G-CRIBS F5",
+        "First floor",
+        "2 bedrooms",
+        "2 bathrooms",
+        "Pool view",
+        "Free WiFi & parking",
+        "📅 Price depends on the requested dates."
+      ],
       mapEmbed: "https://www.google.com/maps?q=Hurghada&output=embed"
     },
     {
