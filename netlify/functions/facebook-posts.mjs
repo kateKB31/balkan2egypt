@@ -1,4 +1,7 @@
 const FACEBOOK_PAGE_URL = "https://www.facebook.com/Balkan2Egypt";
+const FACEBOOK_PAGE_ID = "132644799924441";
+const GRAPH_API_VERSION = "v26.0";
+const POST_FIELDS = "id,message,created_time,permalink_url,full_picture";
 const DEFAULT_LIMIT = 9;
 const MAX_LIMIT = 24;
 
@@ -12,36 +15,18 @@ function json(body, init = {}) {
   });
 }
 
-function pickImage(attachment) {
-  const subattachment = attachment?.subattachments?.data?.[0];
-
-  return attachment?.media?.image?.src
-    || subattachment?.media?.image?.src
-    || null;
-}
-
-function getPostImage(post) {
-  return post.full_picture || pickImage(post.attachments?.data?.[0]) || null;
-}
-
-function getPostText(post) {
-  const attachment = post.attachments?.data?.[0];
-
-  return post.message
-    || attachment?.title
-    || attachment?.description
-    || "Discover more from Balkan2Egypt.";
-}
-
 function normalisePost(post) {
   return {
     id: post.id,
-    message: getPostText(post),
+    message: post.message || "Discover more from Balkan2Egypt.",
     createdTime: post.created_time,
     permalinkUrl: post.permalink_url || FACEBOOK_PAGE_URL,
-    imageUrl: getPostImage(post),
-    mediaType: post.attachments?.data?.[0]?.media_type || null,
+    imageUrl: post.full_picture || null,
   };
+}
+
+function newestFirst(left, right) {
+  return Date.parse(right.created_time || "") - Date.parse(left.created_time || "");
 }
 
 export default async function handler(request) {
@@ -50,9 +35,6 @@ export default async function handler(request) {
   }
 
   const accessToken = Netlify.env.get("FACEBOOK_PAGE_ACCESS_TOKEN");
-  // The page id is optional: a page access token already identifies its own page.
-  const pageId = Netlify.env.get("FACEBOOK_PAGE_ID") || "me";
-  const graphVersion = Netlify.env.get("FACEBOOK_GRAPH_API_VERSION") || "v23.0";
 
   if (!accessToken) {
     return json({
@@ -67,16 +49,8 @@ export default async function handler(request) {
   const requested = Number.parseInt(new URL(request.url).searchParams.get("limit") || "", 10);
   const limit = Number.isNaN(requested) ? DEFAULT_LIMIT : Math.min(Math.max(requested, 1), MAX_LIMIT);
 
-  const fields = [
-    "id",
-    "message",
-    "created_time",
-    "permalink_url",
-    "full_picture",
-    "attachments{media_type,media,target,title,description,subattachments{media,target}}",
-  ].join(",");
-  const endpoint = new URL(`https://graph.facebook.com/${graphVersion}/${encodeURIComponent(pageId)}/posts`);
-  endpoint.searchParams.set("fields", fields);
+  const endpoint = new URL(`https://graph.facebook.com/${GRAPH_API_VERSION}/${FACEBOOK_PAGE_ID}/posts`);
+  endpoint.searchParams.set("fields", POST_FIELDS);
   endpoint.searchParams.set("limit", String(limit));
   endpoint.searchParams.set("access_token", accessToken);
 
@@ -104,8 +78,9 @@ export default async function handler(request) {
       return failure("Facebook posts are temporarily unavailable.");
     }
 
-    const posts = (payload.data || [])
-      .filter((post) => post.message || post.full_picture || post.attachments?.data?.length)
+    const posts = (Array.isArray(payload.data) ? payload.data : [])
+      .filter((post) => post?.id)
+      .sort(newestFirst)
       .map(normalisePost);
 
     return json({

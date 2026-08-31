@@ -24,8 +24,10 @@ Set these environment variables on the Netlify site
 | Variable | Required | Notes |
 | --- | --- | --- |
 | `FACEBOOK_PAGE_ACCESS_TOKEN` | yes | Page access token for the Balkan2Egypt page, with the `pages_read_engagement` permission |
-| `FACEBOOK_PAGE_ID` | no | Only needed if the token is not scoped to a single page; otherwise the function uses `me` |
-| `FACEBOOK_GRAPH_API_VERSION` | no | Defaults to `v23.0` |
+
+The function fetches `/132644799924441/posts` from Meta Graph API `v26.0` and requests
+`id`, `message`, `created_time`, `permalink_url`, and `full_picture`. The access token is
+read only inside the server-side function and is never sent to browser code.
 
 Never commit the token to the repository — keep it in the Netlify environment only.
 

@@ -411,7 +411,11 @@ async function initFacebookPosts() {
     });
     const payload = await response.json();
     const pageUrl = payload.pageUrl || defaultPageUrl;
-    const posts = Array.isArray(payload.posts) ? payload.posts : [];
+    const posts = Array.isArray(payload.posts)
+      ? [...payload.posts].sort((left, right) => {
+          return Date.parse(right.createdTime || "") - Date.parse(left.createdTime || "");
+        })
+      : [];
 
     // Without post data of our own, the official page embed is the only way to
     // still show real posts, so it stands in for every non-success case.
