@@ -1,6 +1,7 @@
 const FACEBOOK_PAGE_URL = "https://www.facebook.com/Balkan2Egypt";
 const DEFAULT_LIMIT = 9;
 const MAX_LIMIT = 24;
+const SUCCESS_CACHE_CONTROL = "public, max-age=300, s-maxage=900, stale-while-revalidate=86400, stale-if-error=86400";
 
 function json(body, init = {}) {
   return Response.json(body, {
@@ -34,14 +35,28 @@ function getPostText(post) {
 }
 
 function normalisePost(post) {
+  if (!post?.id || !post.created_time) return null;
+
+  const attachment = post.attachments?.data?.[0];
+  const hasContent = post.message || post.full_picture || attachment;
+  if (!hasContent) return null;
+
+  const imageUrl = getPostImage(post);
+  const message = getPostText(post);
+
   return {
     id: post.id,
-    message: getPostText(post),
+    message,
     createdTime: post.created_time,
     permalinkUrl: post.permalink_url || FACEBOOK_PAGE_URL,
-    imageUrl: getPostImage(post),
+    imageUrl,
     mediaType: post.attachments?.data?.[0]?.media_type || null,
   };
+}
+
+function getLimit(requestUrl) {
+  const requested = Number.parseInt(new URL(requestUrl).searchParams.get("limit") || "", 10);
+  return Number.isNaN(requested) ? DEFAULT_LIMIT : Math.min(Math.max(requested, 1), MAX_LIMIT);
 }
 
 export default async function handler(request) {
@@ -64,8 +79,7 @@ export default async function handler(request) {
     });
   }
 
-  const requested = Number.parseInt(new URL(request.url).searchParams.get("limit") || "", 10);
-  const limit = Number.isNaN(requested) ? DEFAULT_LIMIT : Math.min(Math.max(requested, 1), MAX_LIMIT);
+  const limit = getLimit(request.url);
 
   const fields = [
     "id",
@@ -78,7 +92,6 @@ export default async function handler(request) {
   const endpoint = new URL(`https://graph.facebook.com/${graphVersion}/${encodeURIComponent(pageId)}/posts`);
   endpoint.searchParams.set("fields", fields);
   endpoint.searchParams.set("limit", String(limit));
-  endpoint.searchParams.set("access_token", accessToken);
 
   const failure = (reason) => json({
     configured: true,
@@ -92,7 +105,10 @@ export default async function handler(request) {
 
   try {
     const response = await fetch(endpoint, {
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        authorization: `Bearer ${accessToken}`,
+      },
       signal: AbortSignal.timeout(8000),
     });
 
@@ -104,9 +120,9 @@ export default async function handler(request) {
       return failure("Facebook posts are temporarily unavailable.");
     }
 
-    const posts = (payload.data || [])
-      .filter((post) => post.message || post.full_picture || post.attachments?.data?.length)
-      .map(normalisePost);
+    const posts = (Array.isArray(payload.data) ? payload.data : [])
+      .map(normalisePost)
+      .filter(Boolean);
 
     return json({
       configured: true,
@@ -115,7 +131,7 @@ export default async function handler(request) {
     }, {
       headers: {
         // Keep serving the last good response while revalidating, and after an upstream error.
-        "cache-control": "public, max-age=300, s-maxage=900, stale-while-revalidate=86400, stale-if-error=86400",
+        "cache-control": SUCCESS_CACHE_CONTROL,
       },
     });
   } catch (error) {
