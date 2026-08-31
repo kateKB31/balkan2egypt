@@ -43,7 +43,11 @@ Never commit the token to the repository — keep it in the Netlify environment 
 Redeploy after setting the variables. To confirm, request `/api/facebook-posts`: it returns
 `"configured": true` with a populated `posts` array once the token works. If Facebook rejects
 the token the endpoint returns 502, the page falls back to the embed, and the Graph error code
-is written to the function log (the token itself is never included in a response).
+is written to the function log. The function sends the token to Facebook in an authorization
+header; it is never placed in the request URL or included in the public response.
+
+The endpoint returns nine posts by default. For diagnostics, a `limit` query parameter can request
+between 1 and 24 posts, for example `/api/facebook-posts?limit=3`.
 
 ## Caching
 
