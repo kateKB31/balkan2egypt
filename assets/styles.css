@@ -965,7 +965,7 @@ iframe.map{
 .detail-card--full{grid-column:1/-1}
 .detail-card__eyebrow{margin:0 0 6px;color:var(--home-gold);font-size:10px;font-weight:800;letter-spacing:.24em;text-transform:uppercase}
 .detail-card h2{margin:0 0 16px;color:var(--home-cream);font:600 clamp(32px,4vw,44px)/.98 "Cormorant Garamond",serif;letter-spacing:-.035em}
-.detail-copy{margin:0;color:#cfe8e4;font-size:15px;line-height:1.8}
+.detail-copy{margin:0;color:#cfe8e4;font-size:15px;line-height:1.8;white-space:pre-line}
 .detail-map{overflow:hidden;border:1px solid rgba(167,231,223,.22);border-radius:14px}
 .detail-map iframe{display:block;width:100%;height:340px;border:0}
 .detail-aside{
