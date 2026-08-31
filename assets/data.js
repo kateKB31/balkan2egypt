@@ -13,6 +13,7 @@ window.DATA = {
       location: "Hurghada",
       type: "Apartment",
       pricePerNight: 55,
+      priceNote: "📅 Price depends on the requested dates.",
       image: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=70",
       description: "Bright apartment near the beach. Great for couples and digital nomads.",
       amenities: [
@@ -22,8 +23,7 @@ window.DATA = {
         "2 bedrooms",
         "2 bathrooms",
         "Pool view",
-        "Free WiFi & parking",
-        "📅 Price depends on the requested dates."
+        "Free WiFi & parking"
       ],
       mapEmbed: "https://www.google.com/maps?q=Hurghada&output=embed"
     },

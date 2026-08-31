@@ -110,7 +110,11 @@ function initRentalSingle() {
   qs("#subtitle").textContent = `${r.location} • ${r.type}`;
   qs("#heroImg").style.backgroundImage = `url('${r.image}')`;
   qs("#desc").textContent = r.description;
-  qs("#price").innerHTML = `<strong>${moneyEUR(r.pricePerNight)}</strong><span>per night</span>`;
+  qs("#price").innerHTML = `
+    <strong>${moneyEUR(r.pricePerNight)}</strong>
+    <span>per night</span>
+    ${r.priceNote ? `<p class="detail-price__note">${r.priceNote}</p>` : ""}
+  `;
   qs("#amenities").innerHTML = r.amenities.map(a => `<li>${a}</li>`).join("");
   qs("#map").src = r.mapEmbed;
 
