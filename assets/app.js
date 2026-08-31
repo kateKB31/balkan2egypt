@@ -81,7 +81,7 @@ function initRentalsList() {
       <div class="card__body">
         <h3>${r.name}</h3>
         <p class="muted">${r.location} • ${r.type}</p>
-        <div class="price">From <strong>${moneyEUR(r.pricePerNight)}</strong> / night</div>
+        <div class="price">${r.pricePerNight ? `From <strong>${moneyEUR(r.pricePerNight)}</strong> / night` : `<strong>${r.priceNote || "Price on request"}</strong>`}</div>
       </div>
     </a>
   `);
@@ -110,11 +110,26 @@ function initRentalSingle() {
   qs("#subtitle").textContent = `${r.location} • ${r.type}`;
   qs("#heroImg").style.backgroundImage = `url('${r.image}')`;
   qs("#desc").textContent = r.description;
-  qs("#price").innerHTML = `
-    <strong>${moneyEUR(r.pricePerNight)}</strong>
-    <span>per night</span>
-    ${r.priceNote ? `<p class="detail-price__note">${r.priceNote}</p>` : ""}
-  `;
+  const gallery = Array.isArray(r.gallery) ? r.gallery : [];
+  const pricePanel = qs("#price");
+  qs("#rateLabel").textContent = gallery.length ? "Apartment photos" : "Nightly rate";
+  pricePanel.classList.toggle("detail-price--gallery", gallery.length > 0);
+  pricePanel.innerHTML = gallery.length
+    ? `
+      <div class="detail-photo-grid">
+        ${gallery.map((image, index) => `
+          <a href="${image}" target="_blank" rel="noopener noreferrer" aria-label="Open apartment photo ${index + 1}">
+            <img src="${image}" alt="" loading="lazy" />
+          </a>
+        `).join("")}
+      </div>
+      ${r.priceNote ? `<p class="detail-price__note">${r.priceNote}</p>` : ""}
+    `
+    : `
+      <strong>${moneyEUR(r.pricePerNight)}</strong>
+      <span>per night</span>
+      ${r.priceNote ? `<p class="detail-price__note">${r.priceNote}</p>` : ""}
+    `;
   qs("#amenities").innerHTML = r.amenities.map(a => `<li>${a}</li>`).join("");
   qs("#map").src = r.mapEmbed;
 

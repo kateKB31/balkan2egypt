@@ -12,9 +12,17 @@ window.DATA = {
       name: "🌴✨ EL GOUNA – G-CRIBS  ✨🌴",
       location: "Hurghada",
       type: "Apartment",
-      pricePerNight: 55,
+      pricePerNight: null,
       priceNote: "📅 Price depends on the requested dates.",
       image: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=70",
+      gallery: [
+        "assets/gcribs/living-room.webp",
+        "assets/gcribs/pool-exterior.webp",
+        "assets/gcribs/kitchen.webp",
+        "assets/gcribs/pool-view.webp",
+        "assets/gcribs/bedroom.webp",
+        "assets/gcribs/bathroom.webp"
+      ],
       description: "Bright apartment near the beach. Great for couples and digital nomads.",
       amenities: [
         "🌴 Luxury & privacy in El Gouna!",
