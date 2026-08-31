@@ -9,7 +9,7 @@ window.DATA = {
   rentals: [
     {
       id: "r1",
-      name: "Sea View Apartment",
+      name: "🌴✨ EL GOUNA – G-CRIBS  ✨🌴",
       location: "Hurghada",
       type: "Apartment",
       pricePerNight: 55,
