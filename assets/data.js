@@ -9,13 +9,51 @@ window.DATA = {
   rentals: [
     {
       id: "r1",
-      name: "Sea View Apartment",
+      name: "🌴✨ EL GOUNA – G-CRIBS  ✨🌴",
       location: "Hurghada",
       type: "Apartment",
-      pricePerNight: 55,
+      pricePerNight: null,
+      priceNote: "📅 Price depends on the requested dates.",
       image: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=70",
-      description: "Bright apartment near the beach. Great for couples and digital nomads.",
-      amenities: ["Wi-Fi", "Air conditioning", "Kitchen", "Near beach"],
+      gallery: [
+        "assets/gcribs/living-room.webp",
+        "assets/gcribs/pool-exterior.webp",
+        "assets/gcribs/kitchen.webp",
+        "assets/gcribs/pool-view.webp",
+        "assets/gcribs/bedroom.webp",
+        "assets/gcribs/bathroom.webp"
+      ],
+      description: `ЛУКСУЗ • ПРИВАТНОСТ • МИР • ПОГЛЕД КОН БАЗЕН
+
+Замислете утро со поглед кон базен, мирна атмосфера и целосна приватност во една од најпосакуваните дестинации на Црвеното Море. 🌊☀️
+
+Овој прекрасен апартман се наоѓа на прв кат во G-CRIBS, F5, El Gouna и е идеален за одмор со семејството, партнерот или пријателите.
+
+✨ 2 спални соби
+🛁 2 бањи
+🏊 Заеднички базен
+🌴 Поглед кон базен
+📶 Бесплатен WiFi
+🚗 Бесплатен паркинг
+🏡 Прв кат
+
+El Gouna е позната по својот уникатен начин на живот — луксуз, безбедност, приватност, прекрасни лагуни, ресторани, кафулиња и опуштена атмосфера далеку од гужвата.
+
+Овде не доаѓате само на одмор.
+🌴 Доаѓате да уживате во животниот стил на El Gouna.
+
+Совршен избор за оние кои сакаат комфорен престој, приватност и мир, а сепак сакаат сè што El Gouna има да понуди да им биде на дофат. ❤️
+
+📅 ЦЕНАТА ЗА АПАРТМАНОТ ЗАВИСИ ОД ПЕРИОДОТ И ДАТУМИТЕ НА ПРЕСТОЈ.`,
+      amenities: [
+        "🌴 Luxury & privacy in El Gouna!",
+        "G-CRIBS F5",
+        "First floor",
+        "2 bedrooms",
+        "2 bathrooms",
+        "Pool view",
+        "Free WiFi & parking"
+      ],
       mapEmbed: "https://www.google.com/maps?q=Hurghada&output=embed"
     },
     {
