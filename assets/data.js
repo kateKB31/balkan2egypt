@@ -57,6 +57,39 @@ El Gouna е позната по својот уникатен начин на ж
       mapEmbed: "https://www.google.com/maps?q=Hurghada&output=embed"
     },
     {
+      id: "r3",
+      name: "🏡 Beautiful Apartment in Dahar, Hurghada 🌊🇪🇬",
+      location: "Dahar, Hurghada",
+      type: "Apartment",
+      pricePerNight: 50,
+      image: "assets/dahar-apartment/terrace-sea-view.jpg",
+      description: `📍 Excellent location – just 5 minutes from the beach, with a beautiful sea view from the terrace.
+
+✨ Modern European-style apartment
+🛏️ 2 bedrooms – up to 4 guests
+🍳 Fully equipped kitchen
+📶 Wi-Fi
+🔐 24h security
+🍽️ Restaurants and markets nearby
+🏖️ Downtown Beach – 5 minutes
+🛍️ Sheraton Street – around 15 minutes on foot
+⛵ Marina – around 15 minutes on foot or 5 minutes by taxi
+
+❤️ The perfect choice for your Hurghada holiday – sea, beach, comfort and a great location.
+
+💶 Price: €50 per night`,
+      amenities: [
+        "Sea view from the terrace",
+        "2 bedrooms for up to 4 guests",
+        "Fully equipped kitchen",
+        "Wi-Fi",
+        "24-hour security",
+        "5 minutes from Downtown Beach",
+        "Restaurants and markets nearby"
+      ],
+      mapEmbed: "https://www.google.com/maps?q=Dahar%2C%20Hurghada%2C%20Egypt&output=embed"
+    },
+    {
       id: "r2",
       name: "Boutique Hotel Downtown",
       location: "Cairo",
