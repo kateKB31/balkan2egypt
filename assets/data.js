@@ -62,7 +62,11 @@ El Gouna е позната по својот уникатен начин на ж
       location: "Dahar, Hurghada",
       type: "Apartment",
       pricePerNight: 50,
+      priceNote: "€50 per night",
       image: "assets/dahar-apartment/terrace-sea-view.jpg",
+      gallery: [
+        "assets/dahar-apartment/terrace-sea-view.jpg"
+      ],
       description: `📍 Excellent location – just 5 minutes from the beach, with a beautiful sea view from the terrace.
 
 ✨ Modern European-style apartment
