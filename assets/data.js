@@ -150,6 +150,35 @@ El Gouna е позната по својот уникатен начин на ж
         "Opposite Dream Beach"
       ],
       mapEmbed: "https://www.google.com/maps?q=Hotel%20Elessy%2C%20Old%20Sheraton%2C%20Hurghada%2C%20Egypt&output=embed"
+    },
+    {
+      id: "r5",
+      name: "🌴🇪🇬 ХУРГАДА ЗА САМО 30 € ОД НОЌ?! 🤯🔥",
+      location: "Intercontinental Area, Hurghada",
+      type: "Studio Apartment",
+      pricePerNight: 30,
+      priceNote: "€30 per night",
+      image: "assets/intercontinental-studio/783899109_122297273816033723_6023874436360330430_n.jpg",
+      gallery: [
+        "assets/intercontinental-studio/783899109_122297273816033723_6023874436360330430_n.jpg",
+        "assets/intercontinental-studio/783948381_122297214422033723_9096195619008323839_n.jpg",
+        "assets/intercontinental-studio/783985348_122297214380033723_5271124282410056451_n.jpg",
+        "assets/intercontinental-studio/783985367_122297214698033723_2740372947287557333_n.jpg",
+        "assets/intercontinental-studio/784003339_122297214638033723_2417439623355909739_n.jpg",
+        "assets/intercontinental-studio/784076049_122297214464033723_3659636344380330794_n.jpg",
+        "assets/intercontinental-studio/784076053_122297214554033723_7417382162726687191_n.jpg"
+      ],
+      description: `Барате совршено место за 2 лица или пар? ❤️ Овој новоопремен студио апартман во Intercontinental Area е одличен избор! 🏊 Базен во комплексот 🛏️ Нов мебел во европски стил 🏖️ Само 5 минути пеш до Santa Maria Beach 🌊 Позната и како 9th Beach / Princess Beach 🍹 5 минути пеш до познатата Mamya Street 💃 Хотели, клубови и ноќен живот 🍽️ Одлични ресторани и кафулиња 🛒 Маркети и продавници во близина 💦 Само 5 минути до воден парк 💥 САМО 30 € / НОЌ Совршено за парови, пријатели или 2 лица кои сакаат плажа, ресторани и ноќен живот на дофат, без да плаќаат хотелски цени. 📩 Пишете ни СЕГА за достапност и резервација!`,
+      amenities: [
+        "Ideal for 2 guests or a couple",
+        "Swimming pool in the complex",
+        "New European-style furniture",
+        "5-minute walk to Santa Maria Beach",
+        "5-minute walk to Mamya Street",
+        "Restaurants, cafés and shops nearby",
+        "5 minutes from a water park"
+      ],
+      mapEmbed: "https://www.google.com/maps?q=Intercontinental%20Area%2C%20Hurghada%2C%20Egypt&output=embed"
     }
   ],
 
