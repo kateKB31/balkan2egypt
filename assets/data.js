@@ -92,17 +92,6 @@ El Gouna е позната по својот уникатен начин на ж
         "Restaurants and markets nearby"
       ],
       mapEmbed: "https://www.google.com/maps?q=Dahar%2C%20Hurghada%2C%20Egypt&output=embed"
-    },
-    {
-      id: "r2",
-      name: "Boutique Hotel Downtown",
-      location: "Cairo",
-      type: "Hotel",
-      pricePerNight: 75,
-      image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=70",
-      description: "Central hotel with easy access to attractions and restaurants.",
-      amenities: ["Breakfast", "Wi-Fi", "24/7 reception"],
-      mapEmbed: "https://www.google.com/maps?q=Cairo&output=embed"
     }
   ],
 
