@@ -14,7 +14,7 @@ window.DATA = {
       type: "Apartment",
       pricePerNight: null,
       priceNote: "📅 Price depends on the requested dates.",
-      image: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=70",
+      image: "assets/gcribs/living-room.webp",
       gallery: [
         "assets/gcribs/living-room.webp",
         "assets/gcribs/pool-exterior.webp",
