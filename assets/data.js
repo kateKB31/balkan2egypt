@@ -92,6 +92,64 @@ El Gouna е позната по својот уникатен начин на ж
         "Restaurants and markets nearby"
       ],
       mapEmbed: "https://www.google.com/maps?q=Dahar%2C%20Hurghada%2C%20Egypt&output=embed"
+    },
+    {
+      id: "r4",
+      name: "🏡 APARTMENT FOR RENT – OLD SHERATON, HURGHADA 🌴☀️",
+      location: "Old Sheraton, Hurghada",
+      type: "Apartment",
+      pricePerNight: 50,
+      priceNote: "€50 per night for 2 people • Breakfast included",
+      image: "assets/old-sheraton/living-room-wide.jpg",
+      gallery: [
+        "assets/old-sheraton/living-room-wide.jpg",
+        "assets/old-sheraton/living-room.jpg",
+        "assets/old-sheraton/dining-area.jpg",
+        "assets/old-sheraton/bedroom.jpg",
+        "assets/old-sheraton/bedroom-sea-view.jpg",
+        "assets/old-sheraton/kitchen.jpg",
+        "assets/old-sheraton/kitchen-detail.jpg",
+        "assets/old-sheraton/dream-beach.jpg",
+        "assets/old-sheraton/old-sheraton-beach.jpg",
+        "assets/old-sheraton/red-sea.jpg"
+      ],
+      description: `🏡 АПАРТМАН ЗА ИЗНАЈМУВАЊЕ – OLD SHERATON, HURGHADA 🌴☀️
+📍 Одлична локација – на улицата кај Hotel Elessy, директно спроти Dream Beach.
+
+✨ Целосно наместен и опремен апартман:
+🛏️ 1 спална соба
+❄️ 2 клима уреди
+📶 Wi-Fi
+💧 Вода
+🔐 Smart lock
+🌿 Мирна и тивка зграда
+🌍 Пријателско соседство
+💰 50 € по ноќ за 2 лица
+🍳 Појадок вклучен во цената
+
+🏖️ Само 400 метри од прекрасната песочна плажа Old Sheraton – околу 5 минути пешачење.
+⚠️ Пристапот до плажата не е вклучен во цената.
+🍽️ Можност за ручек и вечера во Hotel Elessy со претходна резервација.
+📩 Пишете ни за фотографии, повеќе информации и достапност.
+
+🏡 APARTMENT FOR RENT – OLD SHERATON, HURGHADA 🌴☀️
+📍 Great location, on the street of Hotel Elessy, directly opposite Dream Beach.
+
+✨ Fully furnished & equipped:
+🛏️ 1 bedroom • ❄️ 2 AC units • 📶 Wi-Fi • 💧 Water • 🔐 Smart Lock
+💰 €50 per night for 2 people
+🍳 Breakfast included`,
+      amenities: [
+        "1 bedroom for 2 guests",
+        "Breakfast included",
+        "2 air-conditioning units",
+        "Wi-Fi and water",
+        "Smart lock",
+        "Quiet, friendly building",
+        "400 metres from Old Sheraton Beach",
+        "Opposite Dream Beach"
+      ],
+      mapEmbed: "https://www.google.com/maps?q=Hotel%20Elessy%2C%20Old%20Sheraton%2C%20Hurghada%2C%20Egypt&output=embed"
     }
   ],
 
