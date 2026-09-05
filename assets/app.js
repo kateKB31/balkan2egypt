@@ -22,6 +22,32 @@ function renderCards(container, items, cardFn) {
   el.innerHTML = items.map(cardFn).join("");
 }
 
+function renderFormattedDescription(container, description) {
+  if (!container) return;
+
+  const paragraphs = String(description || "")
+    .replace(/\r\n?/g, "\n")
+    .split(/\n{2,}/);
+
+  const fragment = document.createDocumentFragment();
+
+  paragraphs.forEach(paragraphText => {
+    const paragraph = document.createElement("p");
+    paragraph.className = "detail-copy__paragraph";
+
+    paragraphText.split("\n").forEach(lineText => {
+      const line = document.createElement("span");
+      line.className = "detail-copy__line";
+      line.textContent = lineText;
+      paragraph.appendChild(line);
+    });
+
+    fragment.appendChild(paragraph);
+  });
+
+  container.replaceChildren(fragment);
+}
+
 function setWAButtons() {
   qsa("[data-wa]").forEach(btn => {
     const msg = btn.getAttribute("data-wa") || "Hello!";
@@ -196,7 +222,7 @@ function initRentalSingle() {
   qs("#title").textContent = r.name;
   qs("#subtitle").textContent = `${r.location} • ${r.type}`;
   qs("#heroImg").style.backgroundImage = `url('${r.image}')`;
-  qs("#desc").textContent = r.description;
+  renderFormattedDescription(qs("#desc"), r.description);
   const gallery = Array.isArray(r.gallery) ? r.gallery : [];
   const pricePanel = qs("#price");
   qs("#rateLabel").textContent = gallery.length ? "Apartment photos" : "Nightly rate";
