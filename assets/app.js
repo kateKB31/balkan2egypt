@@ -207,7 +207,7 @@ function initRentalSingle() {
         ${gallery.map((image, index) => `
           <button type="button" data-photo-index="${index}" aria-label="View apartment photo ${index + 1} of ${gallery.length}">
             <img src="${image}" alt="${r.name}, photo ${index + 1}" loading="lazy" />
-            ${index === 0 ? `<span>View all ${gallery.length} photos</span>` : ""}
+            ${index === 0 ? `<span>${gallery.length === 1 ? "View photo" : `View all ${gallery.length} photos`}</span>` : ""}
           </button>
         `).join("")}
       </div>
