@@ -87,6 +87,93 @@ function initRentalsList() {
   `);
 }
 
+function initPhotoViewer(gallery, listingName) {
+  if (!gallery.length) return;
+
+  const viewer = document.createElement("div");
+  viewer.className = "photo-viewer";
+  viewer.hidden = true;
+  viewer.setAttribute("role", "dialog");
+  viewer.setAttribute("aria-modal", "true");
+  viewer.setAttribute("aria-label", `${listingName} photo viewer`);
+  viewer.innerHTML = `
+    <button class="photo-viewer__close" type="button" aria-label="Close photo viewer">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg>
+    </button>
+    <button class="photo-viewer__nav photo-viewer__nav--prev" type="button" aria-label="Previous photo">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7" /></svg>
+    </button>
+    <figure class="photo-viewer__figure">
+      <img class="photo-viewer__image" src="" alt="" />
+      <figcaption class="photo-viewer__caption" aria-live="polite"></figcaption>
+    </figure>
+    <button class="photo-viewer__nav photo-viewer__nav--next" type="button" aria-label="Next photo">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg>
+    </button>
+  `;
+  document.body.appendChild(viewer);
+
+  const viewerImage = viewer.querySelector(".photo-viewer__image");
+  const viewerCaption = viewer.querySelector(".photo-viewer__caption");
+  const closeButton = viewer.querySelector(".photo-viewer__close");
+  let currentIndex = 0;
+  let previousFocus = null;
+  let touchStartX = 0;
+
+  const showPhoto = index => {
+    currentIndex = (index + gallery.length) % gallery.length;
+    viewerImage.src = gallery[currentIndex];
+    viewerImage.alt = `${listingName}, photo ${currentIndex + 1} of ${gallery.length}`;
+    viewerCaption.textContent = `${currentIndex + 1} / ${gallery.length}`;
+
+    const previousIndex = (currentIndex - 1 + gallery.length) % gallery.length;
+    const nextIndex = (currentIndex + 1) % gallery.length;
+    [gallery[previousIndex], gallery[nextIndex]].forEach(src => {
+      const image = new Image();
+      image.src = src;
+    });
+  };
+
+  const openViewer = index => {
+    previousFocus = document.activeElement;
+    showPhoto(index);
+    viewer.hidden = false;
+    document.body.classList.add("photo-viewer-open");
+    closeButton.focus();
+  };
+
+  const closeViewer = () => {
+    viewer.hidden = true;
+    document.body.classList.remove("photo-viewer-open");
+    viewerImage.src = "";
+    if (previousFocus) previousFocus.focus();
+  };
+
+  qsa("[data-photo-index]").forEach(button => {
+    button.addEventListener("click", () => openViewer(Number(button.dataset.photoIndex)));
+  });
+  closeButton.addEventListener("click", closeViewer);
+  viewer.querySelector(".photo-viewer__nav--prev").addEventListener("click", () => showPhoto(currentIndex - 1));
+  viewer.querySelector(".photo-viewer__nav--next").addEventListener("click", () => showPhoto(currentIndex + 1));
+  viewer.addEventListener("click", event => {
+    if (event.target === viewer) closeViewer();
+  });
+  viewer.addEventListener("touchstart", event => {
+    touchStartX = event.changedTouches[0].clientX;
+  }, { passive: true });
+  viewer.addEventListener("touchend", event => {
+    const distance = event.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(distance) < 45) return;
+    showPhoto(currentIndex + (distance < 0 ? 1 : -1));
+  }, { passive: true });
+  document.addEventListener("keydown", event => {
+    if (viewer.hidden) return;
+    if (event.key === "Escape") closeViewer();
+    if (event.key === "ArrowLeft") showPhoto(currentIndex - 1);
+    if (event.key === "ArrowRight") showPhoto(currentIndex + 1);
+  });
+}
+
 function initRentalSingle() {
   const id = getParam("id");
   const r = window.DATA.rentals.find(x => x.id === id);
@@ -118,9 +205,10 @@ function initRentalSingle() {
     ? `
       <div class="detail-photo-grid">
         ${gallery.map((image, index) => `
-          <a href="${image}" target="_blank" rel="noopener noreferrer" aria-label="Open apartment photo ${index + 1}">
-            <img src="${image}" alt="" loading="lazy" />
-          </a>
+          <button type="button" data-photo-index="${index}" aria-label="View apartment photo ${index + 1} of ${gallery.length}">
+            <img src="${image}" alt="${r.name}, photo ${index + 1}" loading="lazy" />
+            ${index === 0 ? `<span>View all ${gallery.length} photos</span>` : ""}
+          </button>
         `).join("")}
       </div>
       ${r.priceNote ? `<p class="detail-price__note">${r.priceNote}</p>` : ""}
@@ -132,6 +220,7 @@ function initRentalSingle() {
     `;
   qs("#amenities").innerHTML = r.amenities.map(a => `<li>${a}</li>`).join("");
   qs("#map").src = r.mapEmbed;
+  initPhotoViewer(gallery, r.name);
 
   qs("#bookWA").setAttribute("data-wa", `Hi! I want to book: ${r.name} in ${r.location}.`);
   // data-wa lands after the initial pass, so refresh the WhatsApp links.
