@@ -21,7 +21,19 @@ window.DATA = {
         "assets/gcribs/kitchen.webp",
         "assets/gcribs/pool-view.webp",
         "assets/gcribs/bedroom.webp",
-        "assets/gcribs/bathroom.webp"
+        "assets/gcribs/bathroom.webp",
+        "assets/gcribs/living-room-lounge.webp",
+        "assets/gcribs/kitchen-breakfast-bar.webp",
+        "assets/gcribs/bedroom-second.webp",
+        "assets/gcribs/bedroom-second-wide.webp",
+        "assets/gcribs/balcony-pool-view.webp",
+        "assets/gcribs/pool-wide.webp",
+        "assets/gcribs/pool-sun-terrace.webp",
+        "assets/gcribs/resort-pools-garden.webp",
+        "assets/gcribs/el-gouna-downtown.webp",
+        "assets/gcribs/abu-tig-marina.webp",
+        "assets/gcribs/el-gouna-mosque.webp",
+        "assets/gcribs/red-sea-reef.webp"
       ],
       description: `Experience comfort, privacy and modern luxury in this beautiful 2-bedroom apartment at G-CRIBS, El Gouna. Located on the first floor and overlooking the pool, the apartment is an ideal choice for couples, families or friends looking for a relaxing stay in one of Egypt’s most exclusive destinations.
 
