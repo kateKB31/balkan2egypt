@@ -361,7 +361,7 @@ function initPropertySingle() {
   qs("#title").textContent = p.name;
   qs("#subtitle").textContent = `${p.location} • ${p.type} • ${p.status}`;
   qs("#heroImg").style.backgroundImage = `url('${p.image}')`;
-  qs("#desc").textContent = p.description;
+  renderFormattedDescription(qs("#desc"), p.description);
   qs("#price").textContent = moneyEUR(p.price);
 
   qs("#facts").innerHTML = `
@@ -399,7 +399,7 @@ function initTourSingle() {
   qs("#title").textContent = t.name;
   qs("#subtitle").textContent = `${t.location} • ${t.duration}`;
   qs("#heroImg").style.backgroundImage = `url('${t.image}')`;
-  qs("#desc").textContent = t.description;
+  renderFormattedDescription(qs("#desc"), t.description);
   qs("#price").textContent = moneyEUR(t.price);
   qs("#included").innerHTML = t.included.map(x => `<li>${x}</li>`).join("");
   qs("#map").src = t.mapEmbed;
