@@ -9,7 +9,7 @@ window.DATA = {
   rentals: [
     {
       id: "r1",
-      name: "🌴✨ EL GOUNA – G-CRIBS  ✨🌴",
+      name: "GOUNA PEARL G-CRIBS  – Luxury 2-Bedroom Apartment in El Gouna",
       location: "Hurghada",
       type: "Apartment",
       pricePerNight: null,
@@ -23,28 +23,19 @@ window.DATA = {
         "assets/gcribs/bedroom.webp",
         "assets/gcribs/bathroom.webp"
       ],
-      description: `ЛУКСУЗ • ПРИВАТНОСТ • МИР • ПОГЛЕД КОН БАЗЕН
+      description: `Experience comfort, privacy and modern luxury in this beautiful 2-bedroom apartment at G-CRIBS, El Gouna. Located on the first floor and overlooking the pool, the apartment is an ideal choice for couples, families or friends looking for a relaxing stay in one of Egypt’s most exclusive destinations.
 
-Замислете утро со поглед кон базен, мирна атмосфера и целосна приватност во една од најпосакуваните дестинации на Црвеното Море. 🌊☀️
+Property Highlights:
 
-Овој прекрасен апартман се наоѓа на прв кат во G-CRIBS, F5, El Gouna и е идеален за одмор со семејството, партнерот или пријателите.
+• 2 comfortable bedrooms
+• 2 bathrooms
+• Pool view
+• Free WiFi
+• Free parking
+• First-floor apartment
+• Prime location in El Gouna
 
-✨ 2 спални соби
-🛁 2 бањи
-🏊 Заеднички базен
-🌴 Поглед кон базен
-📶 Бесплатен WiFi
-🚗 Бесплатен паркинг
-🏡 Прв кат
-
-El Gouna е позната по својот уникатен начин на живот — луксуз, безбедност, приватност, прекрасни лагуни, ресторани, кафулиња и опуштена атмосфера далеку од гужвата.
-
-Овде не доаѓате само на одмор.
-🌴 Доаѓате да уживате во животниот стил на El Gouna.
-
-Совршен избор за оние кои сакаат комфорен престој, приватност и мир, а сепак сакаат сè што El Gouna има да понуди да им биде на дофат. ❤️
-
-📅 ЦЕНАТА ЗА АПАРТМАНОТ ЗАВИСИ ОД ПЕРИОДОТ И ДАТУМИТЕ НА ПРЕСТОЈ.`,
+Price varies depending on the requested dates. Contact us for availability and the best price for your stay.`,
       amenities: [
         "🌴 Luxury & privacy in El Gouna!",
         "G-CRIBS F5",
