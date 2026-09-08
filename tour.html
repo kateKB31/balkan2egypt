@@ -1,40 +1,88 @@
-<!doctype html><html lang="en"><head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Tour — BALKAN2EGYPT</title>
-<link rel="stylesheet" href="assets/styles.css?v=20260907"/>
-<script src="assets/data.js?v=20260907"></script><script defer src="assets/app.js?v=20260907"></script>
-</head><body class="tour-single">
-<header class="topbar"><div class="container nav">
-  <div class="brand"><img class="brand__logo" src="assets/logo-balkan2egypt-new.jpeg" alt="Balkan 2 Egypt logo"><div>BALKAN2EGYPT</div></div>
-  <nav class="menu"><a href="tours.html">← Back to Tours</a></nav>
-</div></header>
-
-<main class="page"><div class="container section">
-  <h2 id="title"></h2>
-  <p id="subtitle" class="muted"></p>
-
-  <div class="split" style="margin-top:12px">
-    <div>
-      <div id="heroImg" class="heroImg"></div>
-      <div class="panel" style="margin-top:14px">
-        <h3 style="margin:0 0 8px">Description</h3>
-        <div id="desc" class="detail-copy"></div>
-      </div>
-      <h3 style="margin:14px 0 8px">Location</h3>
-      <iframe id="map" class="map" loading="lazy"></iframe>
-    </div>
-
-    <aside class="panel">
-      <h3 style="margin:0 0 10px">Price</h3>
-      <div class="price"><strong id="price"></strong></div>
-      <h4 style="margin:14px 0 8px">Included</h4>
-      <ul id="included"></ul>
-      <a id="bookWA" class="btn gold" data-wa="" href="#" style="margin-top:14px;width:100%">
-        Book via WhatsApp
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tour — Balkan2Egypt</title>
+  <meta name="description" content="Private tours and excursions with trusted local support and direct WhatsApp booking through Balkan2Egypt." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css?v=20260907" />
+  <script src="assets/data.js?v=20260908"></script>
+  <script defer src="assets/app.js?v=20260908"></script>
+</head>
+<body class="listing-page tours-page tour-single">
+  <header class="topbar listing-topbar">
+    <div class="container nav listing-nav">
+      <a class="home-brand" href="index.html" aria-label="Balkan2Egypt home">
+        <span class="home-brand__mark" aria-hidden="true">
+          <img src="assets/logo-balkan2egypt-new.jpeg" alt="" />
+        </span>
+        <span>Balkan<span>2</span>Egypt</span>
       </a>
-    </aside>
-  </div>
-</div></main>
+      <nav class="menu home-menu listing-menu" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="rentals.html">Apartments</a>
+        <a class="active" href="tours.html">Tours &amp; Excursions</a>
+        <a href="discover.html">Discover Egypt</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <a class="nav-book" data-wa="Hi! I would like help choosing an excursion in Egypt." href="#">Book now</a>
+    </div>
+  </header>
 
-<a id="wa-float" class="wa-float" href="#" aria-label="WhatsApp">💬</a>
-</body></html>
+  <main class="listing-main">
+    <section class="listing-hero detail-hero" aria-labelledby="title">
+      <div id="heroImg" class="detail-hero__photo" aria-hidden="true"></div>
+      <div class="container listing-hero__content detail-hero__content">
+        <a class="detail-back" href="tours.html">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-7 6 7 6" /></svg>
+          <span>All tours &amp; excursions</span>
+        </a>
+        <p id="subtitle" class="listing-kicker"></p>
+        <h1 id="title">Tour &amp; Excursion</h1>
+        <p>Private Red Sea experiences with trusted local support from booking to return.</p>
+      </div>
+    </section>
+
+    <section class="listing-section detail-section" aria-label="Tour details">
+      <div class="container">
+        <div class="detail-layout">
+          <div class="detail-main">
+            <article class="detail-card">
+              <p class="detail-card__eyebrow">Your experience</p>
+              <h2>Trip Details</h2>
+              <div id="desc" class="detail-copy"></div>
+            </article>
+
+            <article class="detail-card">
+              <p class="detail-card__eyebrow">Where you will be</p>
+              <h2>Location</h2>
+              <div class="detail-map">
+                <iframe id="map" title="Map of the tour location" loading="lazy"></iframe>
+              </div>
+            </article>
+          </div>
+
+          <aside class="detail-aside" aria-label="Booking details">
+            <p class="detail-aside__eyebrow">Private experience</p>
+            <div id="price" class="detail-price"></div>
+            <h2>Included</h2>
+            <ul id="included" class="detail-amenities"></ul>
+            <a id="bookWA" class="detail-book" href="#">
+              <span>Book via WhatsApp</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg>
+            </a>
+            <p class="detail-aside__note">Send your preferred destination, date and group size for availability.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <a id="wa-float" class="wa-float" href="#" aria-label="Chat with Balkan2Egypt on WhatsApp">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M26.8 5.2A14.8 14.8 0 0 0 3.6 23l-2 7.3 7.5-2A14.8 14.8 0 0 0 26.8 5.2Zm-10.5 22a12 12 0 0 1-6.1-1.7l-.4-.2-4.4 1.2 1.2-4.3-.3-.5a12 12 0 1 1 10 5.5Zm6.6-9c-.4-.2-2.2-1.1-2.5-1.2-.3-.1-.6-.2-.8.2-.2.4-.9 1.2-1.1 1.4-.2.2-.4.3-.8.1-2.1-1-3.5-1.9-4.9-4.3-.4-.7.4-.7 1-2.2.1-.2 0-.5-.1-.7-.1-.2-.8-2-1.1-2.7-.3-.7-.6-.6-.8-.6h-.7c-.3 0-.7.1-1 .5-.3.4-1.3 1.3-1.3 3.2s1.4 3.7 1.6 4c.2.3 2.8 4.3 6.8 6 2.5 1.1 3.5 1.2 4.7 1 .8-.1 2.2-.9 2.5-1.8.3-.9.3-1.7.2-1.8-.2-.2-.5-.3-.9-.5Z" /></svg>
+  </a>
+</body>
+</html>

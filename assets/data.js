@@ -116,32 +116,24 @@ Price varies depending on the requested dates. Contact us for availability and t
         "assets/old-sheraton/old-sheraton-beach.jpg",
         "assets/old-sheraton/red-sea.jpg"
       ],
-      description: `🏡 АПАРТМАН ЗА ИЗНАЈМУВАЊЕ – OLD SHERATON, HURGHADA 🌴☀️
-📍 Одлична локација – на улицата кај Hotel Elessy, директно спроти Dream Beach.
+      description: `🏡 APARTMENT FOR RENT – OLD SHERATON, HURGHADA 🌴☀️
+📍 Excellent location on the street by Hotel Elessy, directly opposite Dream Beach.
 
-✨ Целосно наместен и опремен апартман:
-🛏️ 1 спална соба
-❄️ 2 клима уреди
+✨ Fully furnished and equipped apartment:
+🛏️ 1 bedroom
+❄️ 2 air-conditioning units
 📶 Wi-Fi
-💧 Вода
+💧 Water
 🔐 Smart lock
-🌿 Мирна и тивка зграда
-🌍 Пријателско соседство
-💰 50 € по ноќ за 2 лица
-🍳 Појадок вклучен во цената
-
-🏖️ Само 400 метри од прекрасната песочна плажа Old Sheraton – околу 5 минути пешачење.
-⚠️ Пристапот до плажата не е вклучен во цената.
-🍽️ Можност за ручек и вечера во Hotel Elessy со претходна резервација.
-📩 Пишете ни за фотографии, повеќе информации и достапност.
-
-🏡 APARTMENT FOR RENT – OLD SHERATON, HURGHADA 🌴☀️
-📍 Great location, on the street of Hotel Elessy, directly opposite Dream Beach.
-
-✨ Fully furnished & equipped:
-🛏️ 1 bedroom • ❄️ 2 AC units • 📶 Wi-Fi • 💧 Water • 🔐 Smart Lock
+🌿 Quiet and peaceful building
+🌍 Friendly neighborhood
 💰 €50 per night for 2 people
-🍳 Breakfast included`,
+🍳 Breakfast included in the price
+
+🏖️ Only 400 metres from the beautiful sandy Old Sheraton Beach — approximately a 5-minute walk.
+⚠️ Beach access is not included in the price.
+🍽️ Lunch and dinner are available at Hotel Elessy with advance reservation.
+📩 Message us for photos, more information and availability.`,
       amenities: [
         "1 bedroom for 2 guests",
         "Breakfast included",
@@ -156,7 +148,7 @@ Price varies depending on the requested dates. Contact us for availability and t
     },
     {
       id: "r5",
-      name: "🌴🇪🇬 ХУРГАДА ЗА САМО 30 € ОД НОЌ?! 🤯🔥",
+      name: "🌴🇪🇬 HURGHADA FOR ONLY €30 PER NIGHT?! 🤯🔥",
       location: "Intercontinental Area, Hurghada",
       type: "Studio Apartment",
       pricePerNight: 30,
@@ -171,24 +163,24 @@ Price varies depending on the requested dates. Contact us for availability and t
         "assets/intercontinental-studio/784076049_122297214464033723_3659636344380330794_n.jpg",
         "assets/intercontinental-studio/784076053_122297214554033723_7417382162726687191_n.jpg"
       ],
-      description: `Барате совршено место за 2 лица или пар?
-❤️ Овој новоопремен студио апартман во Intercontinental Area е одличен избор!
+      description: `Looking for the perfect place for 2 guests or a couple?
+❤️ This newly furnished studio apartment in the Intercontinental Area is an excellent choice!
 
-🏊 Базен во комплексот
-🛏️ Нов мебел во европски стил
-🏖️ Само 5 минути пеш до Santa Maria Beach
-🌊 Позната и како 9th Beach / Princess Beach
-🍹 5 минути пеш до познатата Mamya Street
-💃 Хотели, клубови и ноќен живот
-🍽️ Одлични ресторани и кафулиња
-🛒 Маркети и продавници во близина
-💦 Само 5 минути до воден парк
+🏊 Swimming pool in the complex
+🛏️ New European-style furniture
+🏖️ Only a 5-minute walk to Santa Maria Beach
+🌊 Also known as 9th Beach / Princess Beach
+🍹 A 5-minute walk to the famous Mamya Street
+💃 Hotels, clubs and nightlife nearby
+🍽️ Excellent restaurants and cafés
+🛒 Markets and shops nearby
+💦 Only 5 minutes from a water park
 
-💥 САМО 30 € / НОЌ
+💥 ONLY €30 PER NIGHT
 
-Совршено за парови, пријатели или 2 лица кои сакаат плажа, ресторани и ноќен живот на дофат, без да плаќаат хотелски цени.
+Perfect for couples, friends or 2 guests who want the beach, restaurants and nightlife within easy reach without paying hotel prices.
 
-📩 Пишете ни СЕГА за достапност и резервација!`,
+📩 Message us NOW for availability and booking!`,
       amenities: [
         "Ideal for 2 guests or a couple",
         "Swimming pool in the complex",
@@ -245,26 +237,44 @@ Price varies depending on the requested dates. Contact us for availability and t
 
   tours: [
     {
-      id: "t1",
-      name: "Desert Safari",
-      location: "Hurghada",
-      price: 25,
-      duration: "4 hours",
-      included: ["Transfer", "Guide", "Water"],
-      image: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1200&q=70",
-      description: "Ride into the desert and enjoy sunset vibes.",
-      mapEmbed: "https://www.google.com/maps?q=Hurghada&output=embed"
-    },
-    {
-      id: "t2",
-      name: "Cairo Day Trip",
-      location: "Cairo",
-      price: 40,
-      duration: "Full day",
-      included: ["Transport", "Guide"],
-      image: "https://images.unsplash.com/photo-1544986581-efac024faf62?auto=format&fit=crop&w=1200&q=70",
-      description: "Must-see highlights in Cairo with a local guide.",
-      mapEmbed: "https://www.google.com/maps?q=Cairo&output=embed"
+      id: "vip-speed-boat",
+      name: "VIP Speed Boat",
+      location: "Hurghada Red Sea",
+      price: 70,
+      duration: "Private 3–4 hour trip",
+      included: [
+        "Private speed boat",
+        "Fruit and drinks",
+        "Your choice of destination",
+        "Pick-up and return by speed boat",
+        "No sharing with other guests"
+      ],
+      image: "assets/vip-speed-boat.jpeg",
+      description: `PRIVATE VIP SPEED BOAT – YOU CHOOSE THE ISLAND, WE TAKE YOU THERE!
+
+Enjoy your own 4-hour private speed boat trip across the beautiful Red Sea. You choose the island or tour, and we take you there — completely private, without sharing the boat with strangers.
+
+• Fruit and drinks included
+• You choose your destination
+
+Orange Bay | White Island | Hula Hula | Magawish
+Dolphin House | Paradise Island | Snorkeling | Fishing | Diving
+
+5 persons – €140
+8 persons – €180
+
+Private trip. Your choice. Your adventure.
+
+PRIVATE VIP SPEED BOAT – GIFTUN ISLAND TRANSFER
+
+Private transfer to Giftun Island with 3 hours on the island. Pick-up and return are arranged by private speed boat.
+
+5 persons – €70
+
+Book your VIP adventure on WhatsApp: +389 752 250 65`,
+      mapEmbed: "https://www.google.com/maps?q=Giftun%20Island%20Hurghada&output=embed",
+      whatsappNumber: "38975225065",
+      bookingMessage: "Hi! I would like to book the VIP Speed Boat experience."
     }
   ],
 
