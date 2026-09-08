@@ -396,15 +396,21 @@ function initTourSingle() {
   const t = window.DATA.tours.find(x => x.id === id);
   if (!t) return;
 
+  document.title = `${t.name} — Balkan2Egypt`;
   qs("#title").textContent = t.name;
   qs("#subtitle").textContent = `${t.location} • ${t.duration}`;
   qs("#heroImg").style.backgroundImage = `url('${t.image}')`;
   renderFormattedDescription(qs("#desc"), t.description);
-  qs("#price").textContent = moneyEUR(t.price);
+  qs("#price").innerHTML = `<strong>${moneyEUR(t.price)}</strong><span>starting price</span>`;
   qs("#included").innerHTML = t.included.map(x => `<li>${x}</li>`).join("");
   qs("#map").src = t.mapEmbed;
 
-  qs("#bookWA").setAttribute("data-wa", `Hi! I want to book tour: ${t.name}.`);
+  const bookButton = qs("#bookWA");
+  const bookingMessage = t.bookingMessage || `Hi! I want to book tour: ${t.name}.`;
+  const whatsappNumber = t.whatsappNumber || window.DATA.whatsappNumber;
+  bookButton.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(bookingMessage)}`;
+  bookButton.target = "_blank";
+  bookButton.rel = "noopener";
 }
 
 function initBlogList() {

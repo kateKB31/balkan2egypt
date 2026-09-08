@@ -245,6 +245,46 @@ Price varies depending on the requested dates. Contact us for availability and t
 
   tours: [
     {
+      id: "vip-speed-boat",
+      name: "VIP Speed Boat",
+      location: "Hurghada Red Sea",
+      price: 70,
+      duration: "Private 3–4 hour trip",
+      included: [
+        "Private speed boat",
+        "Fruit and drinks",
+        "Your choice of destination",
+        "Pick-up and return by speed boat",
+        "No sharing with other guests"
+      ],
+      image: "assets/vip-speed-boat.jpeg",
+      description: `PRIVATE VIP SPEED BOAT – YOU CHOOSE THE ISLAND, WE TAKE YOU THERE!
+
+Enjoy your own 4-hour private speed boat trip across the beautiful Red Sea. You choose the island or tour, and we take you there — completely private, without sharing the boat with strangers.
+
+• Fruit and drinks included
+• You choose your destination
+
+Orange Bay | White Island | Hula Hula | Magawish
+Dolphin House | Paradise Island | Snorkeling | Fishing | Diving
+
+5 persons – €140
+8 persons – €180
+
+Private trip. Your choice. Your adventure.
+
+PRIVATE VIP SPEED BOAT – GIFTUN ISLAND TRANSFER
+
+Private transfer to Giftun Island with 3 hours on the island. Pick-up and return are arranged by private speed boat.
+
+5 persons – €70
+
+Book your VIP adventure on WhatsApp: +389 752 250 65`,
+      mapEmbed: "https://www.google.com/maps?q=Giftun%20Island%20Hurghada&output=embed",
+      whatsappNumber: "38975225065",
+      bookingMessage: "Hi! I would like to book the VIP Speed Boat experience."
+    },
+    {
       id: "t1",
       name: "Desert Safari",
       location: "Hurghada",
