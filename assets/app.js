@@ -111,6 +111,27 @@ function initRentalsList() {
   `);
 }
 
+async function loadPersistedApartments() {
+  try {
+    const response = await fetch("/api/apartments", {
+      headers: { accept: "application/json" },
+    });
+    if (!response.ok) throw new Error("Apartment request failed");
+
+    const payload = await response.json();
+    const persistedApartments = Array.isArray(payload.apartments) ? payload.apartments : [];
+    if (!persistedApartments.length) return;
+
+    const persistedIds = new Set(persistedApartments.map(apartment => apartment.id));
+    window.DATA.rentals = [
+      ...persistedApartments,
+      ...window.DATA.rentals.filter(apartment => !persistedIds.has(apartment.id)),
+    ];
+  } catch (error) {
+    console.warn("Persisted apartments are temporarily unavailable.");
+  }
+}
+
 function initPhotoViewer(gallery, listingName) {
   if (!gallery.length) return;
 
@@ -603,11 +624,15 @@ function setMobileNav() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   setMobileNav();
   setFloatingWhatsApp();
   setSocialLinks();
   setWAButtons();
+
+  if (qs("#rentalsGrid") || qs("body").classList.contains("rental-single")) {
+    await loadPersistedApartments();
+  }
 
   if (qs("#rentalsGrid")) initRentalsList();
   if (qs("#propertiesGrid")) initPropertiesList();
