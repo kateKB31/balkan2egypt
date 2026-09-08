@@ -116,32 +116,24 @@ Price varies depending on the requested dates. Contact us for availability and t
         "assets/old-sheraton/old-sheraton-beach.jpg",
         "assets/old-sheraton/red-sea.jpg"
       ],
-      description: `🏡 АПАРТМАН ЗА ИЗНАЈМУВАЊЕ – OLD SHERATON, HURGHADA 🌴☀️
-📍 Одлична локација – на улицата кај Hotel Elessy, директно спроти Dream Beach.
+      description: `🏡 APARTMENT FOR RENT – OLD SHERATON, HURGHADA 🌴☀️
+📍 Excellent location on the street by Hotel Elessy, directly opposite Dream Beach.
 
-✨ Целосно наместен и опремен апартман:
-🛏️ 1 спална соба
-❄️ 2 клима уреди
+✨ Fully furnished and equipped apartment:
+🛏️ 1 bedroom
+❄️ 2 air-conditioning units
 📶 Wi-Fi
-💧 Вода
+💧 Water
 🔐 Smart lock
-🌿 Мирна и тивка зграда
-🌍 Пријателско соседство
-💰 50 € по ноќ за 2 лица
-🍳 Појадок вклучен во цената
-
-🏖️ Само 400 метри од прекрасната песочна плажа Old Sheraton – околу 5 минути пешачење.
-⚠️ Пристапот до плажата не е вклучен во цената.
-🍽️ Можност за ручек и вечера во Hotel Elessy со претходна резервација.
-📩 Пишете ни за фотографии, повеќе информации и достапност.
-
-🏡 APARTMENT FOR RENT – OLD SHERATON, HURGHADA 🌴☀️
-📍 Great location, on the street of Hotel Elessy, directly opposite Dream Beach.
-
-✨ Fully furnished & equipped:
-🛏️ 1 bedroom • ❄️ 2 AC units • 📶 Wi-Fi • 💧 Water • 🔐 Smart Lock
+🌿 Quiet and peaceful building
+🌍 Friendly neighborhood
 💰 €50 per night for 2 people
-🍳 Breakfast included`,
+🍳 Breakfast included in the price
+
+🏖️ Only 400 metres from the beautiful sandy Old Sheraton Beach — approximately a 5-minute walk.
+⚠️ Beach access is not included in the price.
+🍽️ Lunch and dinner are available at Hotel Elessy with advance reservation.
+📩 Message us for photos, more information and availability.`,
       amenities: [
         "1 bedroom for 2 guests",
         "Breakfast included",
