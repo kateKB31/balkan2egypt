@@ -148,7 +148,7 @@ Price varies depending on the requested dates. Contact us for availability and t
     },
     {
       id: "r5",
-      name: "🌴🇪🇬 ХУРГАДА ЗА САМО 30 € ОД НОЌ?! 🤯🔥",
+      name: "🌴🇪🇬 HURGHADA FOR ONLY €30 PER NIGHT?! 🤯🔥",
       location: "Intercontinental Area, Hurghada",
       type: "Studio Apartment",
       pricePerNight: 30,
@@ -163,24 +163,24 @@ Price varies depending on the requested dates. Contact us for availability and t
         "assets/intercontinental-studio/784076049_122297214464033723_3659636344380330794_n.jpg",
         "assets/intercontinental-studio/784076053_122297214554033723_7417382162726687191_n.jpg"
       ],
-      description: `Барате совршено место за 2 лица или пар?
-❤️ Овој новоопремен студио апартман во Intercontinental Area е одличен избор!
+      description: `Looking for the perfect place for 2 guests or a couple?
+❤️ This newly furnished studio apartment in the Intercontinental Area is an excellent choice!
 
-🏊 Базен во комплексот
-🛏️ Нов мебел во европски стил
-🏖️ Само 5 минути пеш до Santa Maria Beach
-🌊 Позната и како 9th Beach / Princess Beach
-🍹 5 минути пеш до познатата Mamya Street
-💃 Хотели, клубови и ноќен живот
-🍽️ Одлични ресторани и кафулиња
-🛒 Маркети и продавници во близина
-💦 Само 5 минути до воден парк
+🏊 Swimming pool in the complex
+🛏️ New European-style furniture
+🏖️ Only a 5-minute walk to Santa Maria Beach
+🌊 Also known as 9th Beach / Princess Beach
+🍹 A 5-minute walk to the famous Mamya Street
+💃 Hotels, clubs and nightlife nearby
+🍽️ Excellent restaurants and cafés
+🛒 Markets and shops nearby
+💦 Only 5 minutes from a water park
 
-💥 САМО 30 € / НОЌ
+💥 ONLY €30 PER NIGHT
 
-Совршено за парови, пријатели или 2 лица кои сакаат плажа, ресторани и ноќен живот на дофат, без да плаќаат хотелски цени.
+Perfect for couples, friends or 2 guests who want the beach, restaurants and nightlife within easy reach without paying hotel prices.
 
-📩 Пишете ни СЕГА за достапност и резервација!`,
+📩 Message us NOW for availability and booking!`,
       amenities: [
         "Ideal for 2 guests or a couple",
         "Swimming pool in the complex",
