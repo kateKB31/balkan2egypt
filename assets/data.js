@@ -8,6 +8,58 @@ window.DATA = {
 
   rentals: [
     {
+      id: "paradise-hill-star",
+      name: "PARADISE HILL STAR – One-Bedroom Apartment in Paradise Hill, Arabia",
+      location: "Paradise Hill, Arabia District, Hurghada",
+      type: "One-Bedroom Apartment",
+      pricePerNight: 40,
+      priceNote: "€40 per night • Optional rooftop SPA available for an additional charge",
+      image: "assets/paradise-hill-star/pool.jpg",
+      gallery: [
+        "assets/paradise-hill-star/pool.jpg",
+        "assets/paradise-hill-star/kitchen.jpg",
+        "assets/paradise-hill-star/rooftop-spa.jpg",
+        "assets/paradise-hill-star/bedroom.jpg",
+        "assets/paradise-hill-star/pool-view.jpg",
+        "assets/paradise-hill-star/bathroom.jpg",
+        "assets/paradise-hill-star/living-room.jpg"
+      ],
+      description: `Enjoy a comfortable stay in this cozy one-bedroom apartment in Paradise Hill, Arabia District, Hurghada. It is an affordable and convenient choice for couples, small families or friends, with space for up to 3 guests.
+
+Property Features
+
+• 1 bedroom
+• Sleeps up to 3 guests
+• Shared swimming pool
+• 24/7 security
+• Convenient Arabia District location
+• €40 per night
+
+Nearby
+
+• 5 minutes to Downtown Beach
+• Walking distance to supermarkets, cafés, restaurants and shops
+• 10 minutes to Hurghada Marina
+• 15 minutes to Sheraton Street
+
+Optional Rooftop SPA
+
+Guests can enjoy an optional rooftop SPA with sea views for an additional charge. Facilities include a Jacuzzi, sauna, Turkish bath, steam room and massage services, with coffee, tea and breakfast options also available.
+
+Contact us directly for availability, more information and booking.`,
+      amenities: [
+        "1 bedroom for up to 3 guests",
+        "Shared swimming pool",
+        "24/7 security",
+        "5 minutes from Downtown Beach",
+        "10 minutes from Hurghada Marina",
+        "Shops, cafés and restaurants nearby",
+        "Optional rooftop SPA with sea views",
+        "Jacuzzi, sauna, Turkish bath and steam room"
+      ],
+      mapEmbed: "https://www.google.com/maps?q=Paradise%20Hill%2C%20Arabia%20District%2C%20Hurghada%2C%20Egypt&output=embed"
+    },
+    {
       id: "r1",
       name: "GOUNA PEARL G-CRIBS  – Luxury 2-Bedroom Apartment in El Gouna",
       location: "Hurghada",
