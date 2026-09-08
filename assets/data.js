@@ -283,28 +283,6 @@ Book your VIP adventure on WhatsApp: +389 752 250 65`,
       mapEmbed: "https://www.google.com/maps?q=Giftun%20Island%20Hurghada&output=embed",
       whatsappNumber: "38975225065",
       bookingMessage: "Hi! I would like to book the VIP Speed Boat experience."
-    },
-    {
-      id: "t1",
-      name: "Desert Safari",
-      location: "Hurghada",
-      price: 25,
-      duration: "4 hours",
-      included: ["Transfer", "Guide", "Water"],
-      image: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1200&q=70",
-      description: "Ride into the desert and enjoy sunset vibes.",
-      mapEmbed: "https://www.google.com/maps?q=Hurghada&output=embed"
-    },
-    {
-      id: "t2",
-      name: "Cairo Day Trip",
-      location: "Cairo",
-      price: 40,
-      duration: "Full day",
-      included: ["Transport", "Guide"],
-      image: "https://images.unsplash.com/photo-1544986581-efac024faf62?auto=format&fit=crop&w=1200&q=70",
-      description: "Must-see highlights in Cairo with a local guide.",
-      mapEmbed: "https://www.google.com/maps?q=Cairo&output=embed"
     }
   ],
 
