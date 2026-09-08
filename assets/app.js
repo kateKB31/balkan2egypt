@@ -22,16 +22,97 @@ function renderCards(container, items, cardFn) {
   el.innerHTML = items.map(cardFn).join("");
 }
 
-const FEATURE_LINE_RE = (() => {
+// Markers that already carry their own visual bullet (emoji, •, ✓, →). Their
+// text is rendered exactly as written so the glyph stays with its feature.
+const GLYPH_FEATURE_RE = (() => {
   try {
-    return new RegExp("^[\\p{Extended_Pictographic}\\u2022\\u25CF\\u25AA\\u2713\\u2714\\u2192*+-]", "u");
+    return new RegExp("^[\\p{Extended_Pictographic}\\u2022\\u25CF\\u25AA\\u2713\\u2714\\u2192]", "u");
   } catch {
-    return /^[\uD83C-\uD83E•●▪✓✔→*+-]/;
+    return /^[\uD83C-\uD83E•●▪✓✔→]/;
   }
 })();
 
-function isFeatureLine(text) {
-  return FEATURE_LINE_RE.test(text);
+// Markdown-style list markers, e.g. "* 2 bedrooms" or "- Swimming pools".
+const MD_BULLET_RE = /^([*+\-])[ \t]+(\S.*)$/;
+// A whole line wrapped in ** ** is a section heading, e.g. "**Property Features:**".
+const MD_HEADING_RE = /^\*\*[ \t]*(.+?)[ \t]*\*\*[ \t]*$/;
+// Inline emphasis inside a line, e.g. "from **9:00 AM** to 5:00 PM".
+const MD_BOLD_RE = /\*\*([^*\n]+)\*\*/g;
+
+function isGlyphFeatureLine(text) {
+  return GLYPH_FEATURE_RE.test(text);
+}
+
+// Returns the item text for a markdown bullet line, or null when the line is
+// not a bullet. Headings are checked first so "**Features:**" is never a bullet.
+function markdownBulletText(text) {
+  if (MD_HEADING_RE.test(text)) return null;
+  const match = text.match(MD_BULLET_RE);
+  return match ? match[2].trim() : null;
+}
+
+// Adds text to a node, turning **bold** spans into real <strong> elements.
+// Content is always inserted as text nodes, never as HTML.
+function appendInlineText(parent, text) {
+  MD_BOLD_RE.lastIndex = 0;
+  let cursor = 0;
+  let match;
+  while ((match = MD_BOLD_RE.exec(text))) {
+    if (match.index > cursor) {
+      parent.appendChild(document.createTextNode(text.slice(cursor, match.index)));
+    }
+    const strong = document.createElement("strong");
+    strong.textContent = match[1].trim();
+    parent.appendChild(strong);
+    cursor = match.index + match[0].length;
+  }
+  if (cursor < text.length) {
+    parent.appendChild(document.createTextNode(text.slice(cursor)));
+  }
+  if (!parent.childNodes.length) parent.appendChild(document.createTextNode(text));
+}
+
+// Safety net for a description that arrives pasted as one flat line: rebuild the
+// section and bullet breaks so it can never render as a single long paragraph.
+function restoreDescriptionBreaks(text) {
+  return text
+    .replace(/[ \t]*(\*\*[^*\n]+\*\*)[ \t]*/g, "\n\n$1\n\n")
+    .replace(/[ \t]+([*+\-])[ \t]+(?=\S)/g, "\n$1 ")
+    .replace(/[ \t]{2,}/g, "\n\n")
+    .replace(/\n{3,}/g, "\n\n");
+}
+
+function normalizeDescription(description) {
+  const text = String(description || "").replace(/\r\n?/g, "\n");
+  const authoredBreaks = (text.match(/\n/g) || []).length >= 2;
+  return authoredBreaks ? text : restoreDescriptionBreaks(text);
+}
+
+// Prose keeps flowing onto the next line unless that line opens a heading, a
+// markdown bullet, or a run of two or more glyph feature lines.
+function isProseContinuation(lines, index) {
+  const text = lines[index];
+  if (MD_HEADING_RE.test(text)) return false;
+  if (markdownBulletText(text) !== null) return false;
+  return !(
+    isGlyphFeatureLine(text) &&
+    index + 1 < lines.length &&
+    isGlyphFeatureLine(lines[index + 1])
+  );
+}
+
+function buildFeatureList(items, withMarker) {
+  const list = document.createElement("ul");
+  list.className = withMarker
+    ? "detail-copy__list detail-copy__list--marker"
+    : "detail-copy__list";
+  items.forEach(itemText => {
+    const item = document.createElement("li");
+    item.className = "detail-copy__item";
+    appendInlineText(item, itemText);
+    list.appendChild(item);
+  });
+  return list;
 }
 
 // Turns a multi-line description into real block elements so every paragraph
@@ -39,8 +120,7 @@ function isFeatureLine(text) {
 function renderFormattedDescription(container, description) {
   if (!container) return;
 
-  const blocks = String(description || "")
-    .replace(/\r\n?/g, "\n")
+  const blocks = normalizeDescription(description)
     .split("\n")
     .map(line => line.trim())
     .join("\n")
@@ -56,20 +136,31 @@ function renderFormattedDescription(container, description) {
 
     let index = 0;
     while (index < lines.length) {
-      // A run of two or more marker lines reads as a feature/amenity list.
-      let end = index;
-      while (end < lines.length && isFeatureLine(lines[end])) end += 1;
+      const headingMatch = lines[index].match(MD_HEADING_RE);
+      if (headingMatch) {
+        const heading = document.createElement("p");
+        heading.className = "detail-copy__heading";
+        appendInlineText(heading, headingMatch[1].replace(/[ \t]*:$/, ""));
+        block.appendChild(heading);
+        index += 1;
+        continue;
+      }
 
+      // A run of markdown bullets becomes a list even for a single item,
+      // otherwise the raw "*" marker would be visible in the copy.
+      let end = index;
+      while (end < lines.length && markdownBulletText(lines[end]) !== null) end += 1;
+      if (end > index) {
+        block.appendChild(buildFeatureList(lines.slice(index, end).map(markdownBulletText), true));
+        index = end;
+        continue;
+      }
+
+      // A run of two or more glyph marker lines reads as a feature/amenity list.
+      end = index;
+      while (end < lines.length && isGlyphFeatureLine(lines[end])) end += 1;
       if (end - index >= 2) {
-        const list = document.createElement("ul");
-        list.className = "detail-copy__list";
-        lines.slice(index, end).forEach(lineText => {
-          const item = document.createElement("li");
-          item.className = "detail-copy__item";
-          item.textContent = lineText;
-          list.appendChild(item);
-        });
-        block.appendChild(list);
+        block.appendChild(buildFeatureList(lines.slice(index, end), false));
         index = end;
         continue;
       }
@@ -79,10 +170,7 @@ function renderFormattedDescription(container, description) {
       do {
         prose.push(lines[index]);
         index += 1;
-      } while (
-        index < lines.length &&
-        !(isFeatureLine(lines[index]) && index + 1 < lines.length && isFeatureLine(lines[index + 1]))
-      );
+      } while (index < lines.length && isProseContinuation(lines, index));
 
       const paragraph = document.createElement("p");
       paragraph.className = "detail-copy__paragraph";
@@ -90,7 +178,7 @@ function renderFormattedDescription(container, description) {
         if (lineIndex > 0) paragraph.appendChild(document.createElement("br"));
         const line = document.createElement("span");
         line.className = "detail-copy__line";
-        line.textContent = lineText;
+        appendInlineText(line, lineText);
         paragraph.appendChild(line);
       });
       block.appendChild(paragraph);

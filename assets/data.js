@@ -199,6 +199,65 @@ Price varies depending on the requested dates. Contact us for availability and t
         "5 minutes from a water park"
       ],
       mapEmbed: "https://www.google.com/maps?q=Intercontinental%20Area%2C%20Hurghada%2C%20Egypt&output=embed"
+    },
+    {
+      id: "r6",
+      name: "Luxury Two-Bedroom Penthouse in Sahl Hasheesh",
+      location: "Sahl Hasheesh, Hurghada, Egypt",
+      type: "Penthouse",
+      pricePerNight: 75,
+      priceNote: "\u20ac75 per night",
+      image: "assets/sahl-hasheesh-penthouse/roof-terrace-sea-view.jpg",
+      gallery: [
+        "assets/sahl-hasheesh-penthouse/roof-terrace-sea-view.jpg",
+        "assets/sahl-hasheesh-penthouse/roof-terrace-daybed.jpg",
+        "assets/sahl-hasheesh-penthouse/roof-terrace-dining.jpg",
+        "assets/sahl-hasheesh-penthouse/living-room.jpg",
+        "assets/sahl-hasheesh-penthouse/dining-area.jpg",
+        "assets/sahl-hasheesh-penthouse/kitchen.jpg",
+        "assets/sahl-hasheesh-penthouse/bedroom-main.jpg",
+        "assets/sahl-hasheesh-penthouse/bedroom-second.jpg",
+        "assets/sahl-hasheesh-penthouse/bedroom-balcony-access.jpg",
+        "assets/sahl-hasheesh-penthouse/bathroom.jpg",
+        "assets/sahl-hasheesh-penthouse/balcony-garden-view.jpg",
+        "assets/sahl-hasheesh-penthouse/balcony-hanging-chair.jpg",
+        "assets/sahl-hasheesh-penthouse/residence-entrance.jpg",
+        "assets/sahl-hasheesh-penthouse/resort-pool-waterfall.webp",
+        "assets/sahl-hasheesh-penthouse/veranda-resort-pools-aerial.jpg"
+      ],
+      description: `Experience a comfortable and relaxing stay in this beautiful two-bedroom penthouse located in Sahl Hasheesh, one of the most exclusive areas on the Red Sea coast near Hurghada.
+
+The penthouse offers two comfortable bedrooms and access to excellent residential facilities, making it an ideal choice for a relaxing holiday or short stay in Egypt.
+
+**Property Features:**
+
+* 2 bedrooms
+* Swimming pools
+* Fully equipped gym
+* Tennis courts
+* Hockey facilities
+* Exclusive location in Sahl Hasheesh
+
+**Golf Cart Service:**
+
+Veranda offers a convenient golf cart service for residents and tenants from 9:00 AM to 5:00 PM. The service provides easy transportation within the area, including access to the beach, market and Old Town.
+
+The golf cart service is free of charge for tenants residing in the Veranda area.
+
+Whether you are looking for a relaxing holiday by the Red Sea or a comfortable place for a short stay in Egypt, this penthouse offers an excellent combination of location, comfort and available facilities.
+
+For photos, availability and booking information, please contact us directly.`,
+      amenities: [
+        "2 bedrooms",
+        "Swimming pools",
+        "Fully equipped gym",
+        "Tennis courts",
+        "Hockey facilities",
+        "Golf cart service, 9:00 AM \u2013 5:00 PM",
+        "Free golf cart use for tenants",
+        "Exclusive location in Sahl Hasheesh"
+      ],
+      mapEmbed: "https://www.google.com/maps?q=Sahl%20Hasheesh%2C%20Hurghada%2C%20Egypt&output=embed"
     }
   ],
 
