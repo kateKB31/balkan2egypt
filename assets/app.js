@@ -22,81 +22,25 @@ function renderCards(container, items, cardFn) {
   el.innerHTML = items.map(cardFn).join("");
 }
 
-const FEATURE_LINE_RE = (() => {
-  try {
-    return new RegExp("^[\\p{Extended_Pictographic}\\u2022\\u25CF\\u25AA\\u2713\\u2714\\u2192*+-]", "u");
-  } catch {
-    return /^[\uD83C-\uD83E•●▪✓✔→*+-]/;
-  }
-})();
-
-function isFeatureLine(text) {
-  return FEATURE_LINE_RE.test(text);
-}
-
-// Turns a multi-line description into real block elements so every paragraph
-// break stays a paragraph break and every feature line keeps its own line.
 function renderFormattedDescription(container, description) {
   if (!container) return;
 
-  const blocks = String(description || "")
-    .replace(/\r\n?/g, "\n")
-    .split("\n")
-    .map(line => line.trim())
-    .join("\n")
-    .split(/\n{2,}/)
-    .map(block => block.split("\n").filter(Boolean))
-    .filter(lines => lines.length);
-
   const fragment = document.createDocumentFragment();
+  const lines = String(description || "").replace(/\r\n?/g, "\n").split("\n");
 
-  blocks.forEach(lines => {
-    const block = document.createElement("div");
-    block.className = "detail-copy__block";
-
-    let index = 0;
-    while (index < lines.length) {
-      // A run of two or more marker lines reads as a feature/amenity list.
-      let end = index;
-      while (end < lines.length && isFeatureLine(lines[end])) end += 1;
-
-      if (end - index >= 2) {
-        const list = document.createElement("ul");
-        list.className = "detail-copy__list";
-        lines.slice(index, end).forEach(lineText => {
-          const item = document.createElement("li");
-          item.className = "detail-copy__item";
-          item.textContent = lineText;
-          list.appendChild(item);
-        });
-        block.appendChild(list);
-        index = end;
-        continue;
-      }
-
-      // Otherwise collect the following prose lines, each on its own line.
-      const prose = [];
-      do {
-        prose.push(lines[index]);
-        index += 1;
-      } while (
-        index < lines.length &&
-        !(isFeatureLine(lines[index]) && index + 1 < lines.length && isFeatureLine(lines[index + 1]))
-      );
-
-      const paragraph = document.createElement("p");
-      paragraph.className = "detail-copy__paragraph";
-      prose.forEach((lineText, lineIndex) => {
-        if (lineIndex > 0) paragraph.appendChild(document.createElement("br"));
-        const line = document.createElement("span");
-        line.className = "detail-copy__line";
-        line.textContent = lineText;
-        paragraph.appendChild(line);
-      });
-      block.appendChild(paragraph);
+  lines.forEach(lineText => {
+    if (!lineText.trim()) {
+      const spacer = document.createElement("span");
+      spacer.className = "detail-copy__spacer";
+      spacer.setAttribute("aria-hidden", "true");
+      fragment.appendChild(spacer);
+      return;
     }
 
-    fragment.appendChild(block);
+    const paragraph = document.createElement("p");
+    paragraph.className = "detail-copy__paragraph";
+    paragraph.textContent = lineText;
+    fragment.appendChild(paragraph);
   });
 
   container.replaceChildren(fragment);
