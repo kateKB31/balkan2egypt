@@ -322,7 +322,11 @@
   document.addEventListener("DOMContentLoaded", () => {
     addSelector();
     document.documentElement.lang = localeTags[locale];
-    translateTree(document.documentElement);
+    try {
+      translateTree(document.documentElement);
+    } finally {
+      document.documentElement.classList.remove("i18n-pending");
+    }
     new MutationObserver(mutations => mutations.forEach(mutation => {
       if (mutation.type === "characterData") translateText(mutation.target);
       if (mutation.type === "attributes") translateAttributes(mutation.target);
