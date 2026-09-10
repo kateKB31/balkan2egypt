@@ -10,6 +10,7 @@
   --max:1120px;
 }
 *{box-sizing:border-box}
+html.i18n-pending body{visibility:hidden}
 body{
   margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
   background:var(--bg); color:var(--text);
@@ -37,6 +38,25 @@ a{color:inherit; text-decoration:none}
 .menu{margin-left:auto; display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end}
 .menu a{font-size:13px; opacity:.92}
 .menu a:hover{opacity:1; text-decoration:underline}
+.language-picker{
+  position:relative; display:inline-flex; align-items:center; gap:7px;
+  min-height:30px; margin-left:2px; padding:0 8px; flex:0 0 auto;
+  border:1px solid rgba(255,255,255,.28); border-radius:999px;
+  color:inherit; background:rgba(255,255,255,.08);
+  transition:border-color .2s ease, background-color .2s ease, transform .2s ease;
+}
+.language-picker:hover{border-color:rgba(255,255,255,.7);background:rgba(255,255,255,.14);transform:translateY(-1px)}
+.language-picker:focus-within{outline:2px solid #d4ad68;outline-offset:3px}
+.language-picker__globe{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.8}
+.language-picker__value{min-width:20px;font-size:10px;font-weight:800;line-height:1;letter-spacing:.06em;text-align:center}
+.language-picker__select{
+  position:absolute; inset:0; z-index:2; appearance:none;
+  width:100%; height:100%; border:0; outline:0; padding:0;
+  opacity:0; cursor:pointer;
+}
+.language-picker__select option{color:#17201e;background:#fff}
+.language-picker__chevron{width:10px;height:10px;fill:none;stroke:currentColor;stroke-width:2;pointer-events:none}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
 /* Mobile navigation toggle (hidden on desktop) */
 .nav__toggle{

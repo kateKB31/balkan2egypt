@@ -7,12 +7,14 @@ function getParam(name) {
 }
 
 function moneyEUR(n) {
-  return new Intl.NumberFormat("en-GB", { style: "currency", currency: "EUR" }).format(n);
+  const locale = window.B2E_I18N?.localeTag || "en-GB";
+  return new Intl.NumberFormat(locale, { style: "currency", currency: "EUR" }).format(n);
 }
 
 function waLink(message) {
   const num = window.DATA.whatsappNumber;
-  const text = encodeURIComponent(message);
+  const localizedMessage = window.B2E_I18N?.translate(message) || message;
+  const text = encodeURIComponent(localizedMessage);
   return `https://wa.me/${num}?text=${text}`;
 }
 
@@ -424,7 +426,7 @@ function formatFacebookDate(value) {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return "Latest update";
 
-  return new Intl.DateTimeFormat("en-GB", {
+  return new Intl.DateTimeFormat(window.B2E_I18N?.localeTag || "en-GB", {
     day: "numeric",
     month: "long",
     year: "numeric"
