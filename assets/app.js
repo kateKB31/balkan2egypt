@@ -112,23 +112,31 @@ function initRentalsList() {
 }
 
 async function loadPersistedApartments() {
+  const controller = new AbortController();
+  const timeoutId = window.setTimeout(() => controller.abort(), 5000);
+
   try {
     const response = await fetch("/api/apartments", {
       headers: { accept: "application/json" },
+      signal: controller.signal,
     });
     if (!response.ok) throw new Error("Apartment request failed");
 
     const payload = await response.json();
     const persistedApartments = Array.isArray(payload.apartments) ? payload.apartments : [];
-    if (!persistedApartments.length) return;
+    if (!persistedApartments.length) return false;
 
     const persistedIds = new Set(persistedApartments.map(apartment => apartment.id));
     window.DATA.rentals = [
       ...persistedApartments,
       ...window.DATA.rentals.filter(apartment => !persistedIds.has(apartment.id)),
     ];
+    return true;
   } catch (error) {
     console.warn("Persisted apartments are temporarily unavailable.");
+    return false;
+  } finally {
+    window.clearTimeout(timeoutId);
   }
 }
 
@@ -630,17 +638,24 @@ document.addEventListener("DOMContentLoaded", async () => {
   setSocialLinks();
   setWAButtons();
 
-  if (qs("#rentalsGrid") || qs("body").classList.contains("rental-single")) {
+  const rentalsGrid = qs("#rentalsGrid");
+  const rentalSingle = qs("body").classList.contains("rental-single");
+
+  if (rentalsGrid) {
+    initRentalsList();
+    loadPersistedApartments().then(hasUpdates => {
+      if (hasUpdates) initRentalsList();
+    });
+  } else if (rentalSingle) {
     await loadPersistedApartments();
+    initRentalSingle();
   }
 
-  if (qs("#rentalsGrid")) initRentalsList();
   if (qs("#propertiesGrid")) initPropertiesList();
   if (qs("#toursGrid")) initToursList();
   if (qs("#blogGrid")) initBlogList();
   if (qs("#facebookPosts")) initFacebookPosts();
 
-  if (qs("body").classList.contains("rental-single")) initRentalSingle();
   if (qs("body").classList.contains("property-single")) initPropertySingle();
   if (qs("body").classList.contains("tour-single")) initTourSingle();
   if (qs("body").classList.contains("post-single")) initPostSingle();
