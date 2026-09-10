@@ -294,10 +294,7 @@
     picker.querySelector(".language-picker__value").textContent = select.options[select.selectedIndex].text;
     select.setAttribute("aria-label", translateCore("Choose language"));
     picker.querySelector(".sr-only").textContent = translateCore("Choose language");
-    select.addEventListener("change", () => {
-      setLocale(select.value);
-      window.location.reload();
-    });
+    select.addEventListener("change", () => setLocale(select.value));
   }
 
   function setLocale(next) {
