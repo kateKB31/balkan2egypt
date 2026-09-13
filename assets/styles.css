@@ -373,7 +373,6 @@ iframe.map{
   background-image:url("hero-sea-resort.jpg");
   background-position:center 43%;
   background-size:cover;
-  transform:scale(1.015);
 }
 .home-hero__shade{
   position:absolute;
