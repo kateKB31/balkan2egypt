@@ -41,7 +41,14 @@ function renderFormattedDescription(container, description) {
 
     const paragraph = document.createElement("p");
     paragraph.className = "detail-copy__paragraph";
-    paragraph.textContent = lineText;
+    const boldLine = lineText.match(/^\*\*(.+)\*\*$/);
+    if (boldLine) {
+      const strong = document.createElement("strong");
+      strong.textContent = boldLine[1];
+      paragraph.appendChild(strong);
+    } else {
+      paragraph.textContent = lineText;
+    }
     fragment.appendChild(paragraph);
   });
 
