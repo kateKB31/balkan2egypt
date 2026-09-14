@@ -120,12 +120,47 @@ function initRentalsList() {
   `);
 }
 
+function showRentalsLoading() {
+  const grid = qs("#rentalsGrid");
+  if (!grid) return;
+
+  grid.setAttribute("aria-busy", "true");
+  grid.innerHTML = Array.from({ length: 2 }, () => `
+    <div class="rental-skeleton" aria-hidden="true">
+      <div class="rental-skeleton__image"></div>
+      <div class="rental-skeleton__body">
+        <span class="rental-skeleton__line rental-skeleton__line--title"></span>
+        <span class="rental-skeleton__line rental-skeleton__line--meta"></span>
+        <span class="rental-skeleton__line rental-skeleton__line--price"></span>
+      </div>
+    </div>
+  `).join("");
+}
+
+function finishRentalsLoading(isCurrent) {
+  const grid = qs("#rentalsGrid");
+  if (!grid) return;
+
+  grid.removeAttribute("aria-busy");
+  qs("#rentalsStatus")?.remove();
+
+  if (!isCurrent) {
+    const status = document.createElement("p");
+    status.id = "rentalsStatus";
+    status.className = "rentals-status";
+    status.setAttribute("role", "status");
+    status.textContent = "Current listings could not be refreshed. Showing our saved selection.";
+    grid.before(status);
+  }
+}
+
 async function loadPersistedApartments() {
   const controller = new AbortController();
   const timeoutId = window.setTimeout(() => controller.abort(), 5000);
 
   try {
     const response = await fetch("/api/apartments", {
+      cache: "no-store",
       headers: { accept: "application/json" },
       signal: controller.signal,
     });
@@ -133,8 +168,6 @@ async function loadPersistedApartments() {
 
     const payload = await response.json();
     const persistedApartments = Array.isArray(payload.apartments) ? payload.apartments : [];
-    if (!persistedApartments.length) return false;
-
     const persistedIds = new Set(persistedApartments.map(apartment => apartment.id));
     window.DATA.rentals = [
       ...persistedApartments,
@@ -651,10 +684,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   const rentalSingle = qs("body").classList.contains("rental-single");
 
   if (rentalsGrid) {
+    showRentalsLoading();
+    const isCurrent = await loadPersistedApartments();
     initRentalsList();
-    loadPersistedApartments().then(hasUpdates => {
-      if (hasUpdates) initRentalsList();
-    });
+    finishRentalsLoading(isCurrent);
   } else if (rentalSingle) {
     await loadPersistedApartments();
     initRentalSingle();

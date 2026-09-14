@@ -18,7 +18,7 @@ export default async function handler(request: Request) {
       name: title,
     })),
   }, {
-    headers: { "cache-control": "public, max-age=60" },
+    headers: { "cache-control": "no-store" },
   });
 }
 
