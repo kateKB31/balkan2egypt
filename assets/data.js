@@ -289,6 +289,91 @@ Perfect for couples, friends or 2 guests who want the beach, restaurants and nig
 
   tours: [
     {
+      id: "luxor-valley-of-the-kings-karnak-temple",
+      name: "🇪🇬 Luxor – Valley of the Kings & Karnak Temple",
+      location: "Luxor",
+      price: 55,
+      priceDisplay: "€55",
+      priceSuffix: "per person",
+      tourType: "BUS TOUR",
+      guide: "🇷🇸 🇲🇰 🇬🇧 Serbian • Macedonian • English-speaking guide",
+      duration: "Full-day excursion",
+      included: [
+        "Hotel pickup and return transportation",
+        "Air-conditioned tourist bus",
+        "Entrance tickets to the attractions listed in the itinerary",
+        "Professional guide in Serbian, Macedonian and English",
+        "Lunch at a local restaurant",
+        "Applicable taxes and service charges"
+      ],
+      image: "assets/luxordaytrip.png",
+      description: `**TOUR OVERVIEW**
+
+Discover the ancient treasures of Luxor on a full-day journey from Hurghada. Explore some of Egypt’s most famous archaeological sites and experience the history of ancient Thebes.
+
+**MAIN EXPERIENCES**
+
+🏺 Valley of the Kings
+🏛️ Temple of Hatshepsut
+🗿 Colossi of Memnon
+🏛️ Karnak Temple
+📸 Scenic photo stops
+🍽️ Lunch at a local restaurant
+
+**WHAT IS INCLUDED**
+
+• Hotel pickup and return transportation
+• Air-conditioned tourist bus
+• Entrance tickets to the attractions listed in the itinerary
+• Professional guide in Serbian, Macedonian and English
+• Lunch at a local restaurant
+• Applicable taxes and service charges
+
+**NOT INCLUDED**
+
+• Drinks and beverages during lunch
+• Personal purchases or other personal expenses
+• Tips and gratuities
+• Optional activities that are not listed in the program
+• Any additional entrance tickets not specifically mentioned
+• Any services or activities not included in the itinerary
+
+**SCHEDULE & DURATION**
+
+⏰ Early morning pickup from the hotel
+⏰ Full-day excursion
+⏰ Return to Hurghada in the evening
+📅 Available every day
+
+**WHAT TO BRING**
+
+• Comfortable clothing and shoes
+• Sunglasses
+• Sun protection / hat
+• Camera or smartphone for photos
+• Light clothing during summer
+• A warmer layer during winter
+• Some water for the journey
+
+**BOOKING**
+
+WhatsApp & Viber: +389 75 225 065
+
+**Balkan2Egypt**
+Discover Egypt beyond the pyramids.
+
+**🇪🇬 OUR EXCURSIONS**
+
+Our excursions are organized in cooperation with trusted and experienced local Egyptian tour operators and excursion providers.
+
+We carefully select our local partners to help ensure reliable transportation, professional guides and well-organized experiences throughout Egypt.
+
+With Balkan2Egypt, you have one point of contact before, during and after your excursion — so you can enjoy Egypt with confidence and peace of mind.`,
+      mapEmbed: "https://www.google.com/maps?q=Luxor%2C%20Egypt&output=embed",
+      whatsappNumber: "38975225065",
+      bookingMessage: "Hi! I would like to book the Luxor – Valley of the Kings & Karnak Temple tour."
+    },
+    {
       id: "cairo-pyramids-grand-egyptian-museum",
       name: "🇪🇬 Cairo – Pyramids & Grand Egyptian Museum",
       location: "Cairo & Giza",
