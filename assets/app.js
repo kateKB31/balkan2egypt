@@ -366,8 +366,8 @@ function initToursList() {
       <div class="card__img" style="background-image:url('${t.image}')"></div>
       <div class="card__body">
         <h3>${t.name}</h3>
-        <p class="muted">${t.location} • ${t.duration}</p>
-        <div class="price">From <strong>${moneyEUR(t.price)}</strong></div>
+        <p class="muted">${t.location} • ${t.tourType || t.duration}</p>
+        <div class="price">${t.pricePrefix === false || t.priceSuffix ? "" : "From "}<strong>${t.priceDisplay || moneyEUR(t.price)}</strong>${t.priceSuffix ? ` ${t.priceSuffix}` : ""}</div>
       </div>
     </a>
   `);
@@ -380,10 +380,12 @@ function initTourSingle() {
 
   document.title = `${t.name} — Balkan2Egypt`;
   qs("#title").textContent = t.name;
-  qs("#subtitle").textContent = `${t.location} • ${t.duration}`;
+  qs("#subtitle").textContent = [t.location, t.tourType, t.duration].filter(Boolean).join(" • ");
   qs("#heroImg").style.backgroundImage = `url('${t.image}')`;
+  const heroSummary = qs("#heroSummary");
+  if (heroSummary && t.guide) heroSummary.textContent = t.guide;
   renderFormattedDescription(qs("#desc"), t.description);
-  qs("#price").innerHTML = `<strong>${moneyEUR(t.price)}</strong><span>starting price</span>`;
+  qs("#price").innerHTML = `<strong>${t.priceDisplay || moneyEUR(t.price)}</strong><span>${t.priceSuffix || "starting price"}</span>`;
   qs("#included").innerHTML = t.included.map(x => `<li>${x}</li>`).join("");
   qs("#map").src = t.mapEmbed;
 
@@ -393,6 +395,11 @@ function initTourSingle() {
   bookButton.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(bookingMessage)}`;
   bookButton.target = "_blank";
   bookButton.rel = "noopener";
+
+  const bookingNote = qs("#bookingNote");
+  if (bookingNote && t.whatsappNumber === "38975225065") {
+    bookingNote.textContent = "WhatsApp & Viber: +389 75 225 065";
+  }
 }
 
 function initBlogList() {

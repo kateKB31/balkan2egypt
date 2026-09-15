@@ -289,6 +289,89 @@ Perfect for couples, friends or 2 guests who want the beach, restaurants and nig
 
   tours: [
     {
+      id: "cairo-pyramids-grand-egyptian-museum",
+      name: "🇪🇬 Cairo – Pyramids & Grand Egyptian Museum",
+      location: "Cairo & Giza",
+      price: 72,
+      priceDisplay: "€72",
+      priceSuffix: "per person",
+      tourType: "BUS TOUR",
+      guide: "🇷🇸 🇲🇰 🇬🇧 Serbian • Macedonian • English-speaking guide",
+      duration: "Approximately 7 hours",
+      included: [
+        "Hotel pickup and return transportation",
+        "Air-conditioned tourist bus",
+        "Entrance tickets to the attractions listed in the itinerary",
+        "Professional guide in Serbian, Macedonian and English",
+        "Lunch at a local restaurant",
+        "Applicable taxes and service charges"
+      ],
+      image: "assets/cairo-pyramids-grand-egyptian-museum.png",
+      description: `**TOUR OVERVIEW**
+
+Discover the highlights of Cairo on a full-day journey combining ancient Egyptian landmarks with a visit to the Grand Egyptian Museum.
+
+The tour includes the famous Pyramids of Giza, the Great Sphinx, the Valley Temple, the Grand Egyptian Museum, a perfume and papyrus factory, photo stops, and lunch at a local restaurant.
+
+Hotel pickup and drop-off are included.
+
+**MAIN EXPERIENCES**
+
+🏜️ Great Pyramids of Giza
+🗿 Great Sphinx
+🏛️ Valley Temple
+🏺 Grand Egyptian Museum (GEM)
+🌸 Perfume & Papyrus Factory
+📸 Scenic photo stops
+🍽️ Lunch at a local restaurant
+
+**WHAT IS INCLUDED**
+
+• Hotel pickup and return transportation
+• Air-conditioned tourist bus
+• Entrance tickets to the attractions listed in the itinerary
+• Professional guide in Serbian, Macedonian and English
+• Lunch at a local restaurant
+• Applicable taxes and service charges
+
+**NOT INCLUDED**
+
+• Drinks and beverages during lunch
+• Personal purchases or other personal expenses
+• Tips and gratuities
+• Optional activities that are not listed in the program
+• Any additional entrance tickets not specifically mentioned
+• Entrance inside the Pyramid of Chephren
+• Any services or activities not included in the itinerary
+
+**SCHEDULE & DURATION**
+
+⏰ Pickup: approximately 08:00
+⏰ Return: approximately 15:00
+🕐 Total duration: approximately 7 hours
+📅 Available every day
+
+**WHAT TO BRING**
+
+• Comfortable clothing and shoes
+• Sunglasses
+• Sun protection / hat
+• Camera or smartphone for photos
+• Light clothing during summer
+• A warmer layer during winter
+• Some water for the journey
+
+**BOOKING**
+
+WhatsApp & Viber: +389 75 225 065
+
+**Balkan2Egypt**
+Discover Egypt beyond the pyramids.`,
+      mapEmbed: "https://www.google.com/maps?q=Great%20Pyramids%20of%20Giza%20Egypt&output=embed",
+      whatsappNumber: "38975225065",
+      bookingMessage: "Hi! I would like to book the Cairo – Pyramids & Grand Egyptian Museum tour."
+    },
+    {
       id: "vip-speed-boat",
       name: "VIP Speed Boat",
       location: "Hurghada Red Sea",
